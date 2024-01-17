@@ -1,0 +1,25 @@
+@import '../../index.css';
+
+body{
+    background: rgb(244, 244, 244);
+}
+
+input{
+    margin-bottom: 10px;
+}
+
+select{
+    margin-bottom: 10px;
+}
+.ql-editor{
+    background: var(--color-white);
+    overflow: scroll;
+    height: 10rem !important;
+}
+
+@media screen and (max-width: 800px){
+    .create-post{
+        width: 100%;
+        
+    }
+}

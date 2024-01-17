@@ -1,0 +1,121 @@
+@import '../../index.css';
+
+.profile__container{
+    display: grid;
+    place-items: center;
+    text-align: center;
+}
+
+.profile__details{
+    width: 100%;
+}
+
+.avatar__wrapper{
+    width: 15rem;
+    aspect-ratio: 1/1;
+    position: relative;
+    margin-inline: auto;
+    margin-top: 1rem;
+}
+
+.profile__avatar{
+    height: 100%;
+    border-radius: 50%;
+    border: 1rem solid var(--color-primary);
+    overflow: hidden;
+}
+
+.avatar__guide{
+    position: absolute;
+    z-index: 2;
+    top: 0%;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1rem solid var(--color-primary);
+}
+
+.avatar__form{
+    height: 1rem;
+}
+
+.avatar__form input{
+    visibility: hidden;
+}
+
+.avatar__form label, .profile__avatar-btn{
+    background: var(--color-gray-900);
+    color: var(--color-white);
+    font-size: 1.2rem;
+    position: absolute;
+    right: 2rem;
+    bottom: 1.4rem;
+    width: 3rem;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+}
+.imageBox{
+    z-index: 0;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    top: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+#alttext{
+    z-index: 2;
+}
+.imageText{
+    z-index: 0;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    top: 0rem;
+    /* height: 100%; */
+    overflow: hidden;
+}
+.profile__avatar-btn {
+    z-index: 4;
+    cursor: pointer;
+    padding: 0;
+    font-size: 2rem;
+    background: var(--color-primary);
+    animation: pulse 1s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1); 
+    }
+    50% {
+      transform: scale(1.2); 
+    }
+    100% {
+      transform: scale(1); 
+    }
+  }
+  
+.profile__details h1{
+    margin-top: 1.5rem;
+}
+
+.form.profile__form{
+    margin-top: 3rem;
+    margin-inline: auto;
+    width: var(--form-width);
+}
+
+#root > section > div > div > div > form > label{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px){
+    .form.profile__form{
+        margin-top: 2.5rem;
+        width: 100%;
+    }
+}
