@@ -34,6 +34,10 @@
   box-sizing: border-box;
 }
 
+html{
+  height: 100vh;
+}
+
 body{
     font-family: 'Bitter', serif;
     background-color: var(--color-bg);

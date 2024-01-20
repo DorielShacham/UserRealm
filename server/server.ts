@@ -49,7 +49,7 @@ app.post('/api/posts/:creatorId', async (req, res) => {
     const { creatorId } = req.params;
     const { url } = req.body;
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
     await page.goto(url);
     const screenshot = await page.screenshot();

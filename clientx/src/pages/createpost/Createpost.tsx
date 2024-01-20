@@ -152,7 +152,7 @@ export const Createpost = () => {
           />
           <input
             type="text"
-            placeholder="Link (optional)"
+            placeholder="Project Link (optional)"
             value={developerLink}
             onChange={(e) => setDeveloperLink(e.target.value)}
           />

@@ -20,6 +20,7 @@ import { Developerposts } from './pages/developerposts/Developerposts';
 import { Dashboard } from './pages/dashboard/Dashboard';
 import { Logout } from './pages/logout/Logout';
 import UserProvider from './contex/userContext';
+import About from './pages/about/About';
 
 
 const router = createBrowserRouter([
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: 'developers',
         element: <Developers />
+      },
+      {
+        path: 'about',
+        element: <About />
       },
       {
         path: 'create',

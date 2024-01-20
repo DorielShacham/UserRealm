@@ -167,7 +167,7 @@ export const Editpost = () => {
           />
           <input
             type="text"
-            placeholder="Developer's Work Link"
+            placeholder="Project Link (optional)"
             value={developerLink || ""} 
             onChange={(e) => setDeveloperLink(e.target.value)}
           />

@@ -24,9 +24,8 @@ export const Header = () => {
       <div className="container nav__container">
         <Link to={'/'} className="nav__logo" onClick={closeNavBar}>
         <Realm />
-          {/* <img src={Logo} alt="userrealm logo" /> */}
-
         </Link>
+
         {currentUser ? (
           <ul className={`nav__menu ${isNavShowing ? 'show' : ''}`}>
             <li>
@@ -45,6 +44,11 @@ export const Header = () => {
               </Link>
             </li>
             <li>
+              <Link to={'/about'} onClick={closeNavBar}>
+                About
+              </Link>
+            </li>
+            <li>
               <Link to={'/logout'} onClick={closeNavBar}>
                 Logout
               </Link>
@@ -55,6 +59,11 @@ export const Header = () => {
             <li>
               <Link to={'/developers'} onClick={closeNavBar}>
                 Developers
+              </Link>
+            </li>
+            <li>
+              <Link to={'/about'} onClick={closeNavBar}>
+                About
               </Link>
             </li>
             <li>
