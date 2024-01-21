@@ -1,16 +1,18 @@
 import express, { urlencoded} from "express";
 import dotenv from "dotenv";
+dotenv.config();
 import cors from "cors";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import bcrypt from "bcrypt"
 import jsonwebtoken from "jsonwebtoken"
-dotenv.config();
+
 import upload from 'express-fileupload';
 import puppeteer from 'puppeteer';
 import userRoutes from "./API/routes/userRoutes";
 import postRoutes from "./API/routes/postRoutes";
 import { errorHandler, notFound } from "./API/middleware/errorMiddleware";
+import { allowedOrigin } from "./config/allowedOrigin";
 
 
 
@@ -35,7 +37,7 @@ mongoose
 app.use(express.json());
 app.use(cookieParser());
 app.use(urlencoded({extended:true}));
-app.use(cors({credentials:true, origin: "http://localhost:3000"}));
+app.use(cors({credentials:true, origin: `${allowedOrigin}`}));
 app.use(upload())
 app.use('/API/uploads', express.static(__dirname + '/API/uploads'));
 
