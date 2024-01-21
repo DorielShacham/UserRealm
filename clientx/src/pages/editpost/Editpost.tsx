@@ -35,19 +35,19 @@ export const Editpost = () => {
         setTitle(response.data.title);
         setDescription(response.data.description);
         setDeveloperLink(response.data.developerLink || "");
+        setCategory(response.data.category || "Uncategorized");
       } catch (error) {
-        console.log(error)
+        console.error(error);
       }
     }
     getPost();
-  }, [])
-
+  }, [id])
 
   const editPost = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const postData = new FormData();
     postData.set('title', title);
-    postData.set('category', category);
+    postData.set('category', category || "Uncategorized");
     postData.set('description', description);
     postData.set('thumbnail', thumbnail);
     if (developerLink.trim() !== "") {
@@ -56,15 +56,14 @@ export const Editpost = () => {
 
     try {
       const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}/posts/${id}`, postData, {withCredentials:true, headers: {Authorization: `Bearer ${token}`}});
-      if(response.status == 200){
-        return navigate('/')
+      if(response.status === 200){
+        navigate('/');
       }
     } catch (err: any) {
       console.error(err);
       setError(err.response.data.message);
     }
   }
-
 
   const modules = {
     toolbar: [
@@ -129,7 +128,6 @@ export const Editpost = () => {
     const file = (e.target.files as FileList)?.[0];
     setThumbnail(file ? URL.createObjectURL(file) : null);
   };
-  
 
   return (
     <section className="create-post">
@@ -150,7 +148,9 @@ export const Editpost = () => {
             onChange={(e) => setCategory(e.target.value)}
           >
             {POST_CATEGORIES.map((cat) => (
-              <option key={cat}>{cat}</option>
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
             ))}
           </select>
           <ReactQuill

@@ -167,7 +167,7 @@ const editPost = async (req, res, next) => {
         }
       );
 
-      const {thumbnail} = req.files; // Use optional chaining // const thumbnail = req.files?.thumbnail; 
+      const {thumbnail} = req.files; 
 
       // Check size
       if (thumbnail.size > 2000000) {
@@ -176,7 +176,7 @@ const editPost = async (req, res, next) => {
 
       fileName = thumbnail.name;
 let splittedFileName = fileName.split('.');
-let fileExtension = splittedFileName.pop(); // Remove the last element (file extension)
+let fileExtension = splittedFileName.pop(); 
 newFileName =
   splittedFileName.join('.') +
   uuid() +
