@@ -33,12 +33,17 @@ export const Userprofile = () => {
 
   const token = currentUser?.token;
   
-  //redirect to login page for offline users
   useEffect(() => {
-    if (!token) {
-      navigate("/login");
-    }
-  }, []);
+    const redirectTimeout = setTimeout(() => {
+      if (!currentUser || !token) {
+        navigate("/login");
+      }
+    }, 200);
+  
+    return () => clearTimeout(redirectTimeout);
+  }, [currentUser, token]);
+  
+  
 
   useEffect(() => {
     const getUser = async () => {

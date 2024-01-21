@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import './header.css';
-// import Logo from '../../assets/logo.png';
 import { FaBars } from 'react-icons/fa6';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useState, useContext } from 'react';

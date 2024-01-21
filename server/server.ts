@@ -51,8 +51,12 @@ app.post('/api/posts/:creatorId', async (req, res) => {
 
     const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
+
     await page.goto(url);
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
     const screenshot = await page.screenshot();
+
     await browser.close();
 
     res.json({ success: true, screenshot: screenshot.toString('base64') });
@@ -61,6 +65,7 @@ app.post('/api/posts/:creatorId', async (req, res) => {
     res.status(500).json({ success: false, error: 'Screenshot capture failed' });
   }
 });
+
 
 
 app.use(notFound);

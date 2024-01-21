@@ -8,7 +8,6 @@ const authMiddleware = async (req, res, next) => {
   if (Authorization && Authorization.startsWith("Bearer")) {
     const token = Authorization.split(" ")[1];
 
-    // Check if JWT_SECRET is defined
     if (!process.env.JWT_SECRET) {
       return next(
         new HttpError("Internal Server Error: JWT_SECRET not defined", 500)

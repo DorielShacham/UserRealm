@@ -19,7 +19,6 @@ export const Createpost = () => {
 
   const token = currentUser?.token;
 
-  //redirect to login page for offline users
   useEffect(() => {
     if (!token) {
       navigate("/login");

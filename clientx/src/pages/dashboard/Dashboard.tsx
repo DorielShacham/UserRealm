@@ -49,12 +49,10 @@ export const Dashboard = () => {
     fetchPosts();
   }, [id, token]);
 
-  // Conditionally render Loader
   if (isLoading) {
     return <Loader />;
   }
 
-  // const imgUrl = post?.thumbnail ? `${process.env.REACT_APP_ASSETS_URL}/API/uploads/${post.thumbnail}` : '';
 
   return (
     <section className="dashboard">
