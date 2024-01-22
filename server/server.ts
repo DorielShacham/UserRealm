@@ -35,7 +35,7 @@ mongoose
 app.use(express.json());
 app.use(cookieParser());
 app.use(urlencoded({extended:true}));
-app.use(cors({credentials:true, origin: process.env.CLIENT_PROD_URL}));
+app.use(cors({credentials:true, origin: process.env.CLIENT_DEV_URL}));
 app.use(upload())
 app.use('/API/uploads', express.static(__dirname + '/API/uploads'));
 
