@@ -18,6 +18,7 @@ const app = express();
 
 const mongodb_uri = process.env.MONGO_URI;
 const PORT = process.env.PORT;
+const corsOrigin = process.env.CLIENT_DEV_URL;
 
 // mongoose 7 place this on false as default.
 mongoose.set("strictQuery", true);
@@ -35,7 +36,7 @@ mongoose
 app.use(express.json());
 app.use(cookieParser());
 app.use(urlencoded({extended:true}));
-app.use(cors({credentials:true, origin: process.env.CLIENT_DEV_URL}));
+app.use(cors({credentials:true, origin: `${corsOrigin}`}));
 app.use(upload())
 app.use('/API/uploads', express.static(__dirname + '/API/uploads'));
 
