@@ -52,7 +52,7 @@ export const Postdetail = () => {
       setIsLoading(false);
     };
     getPost();
-  }, [id]);
+  }, []);
 
   useEffect(() => {}, [currentUser, post]);
 
