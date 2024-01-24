@@ -12,8 +12,6 @@ import userRoutes from "./API/routes/userRoutes";
 import postRoutes from "./API/routes/postRoutes";
 import { errorHandler, notFound } from "./API/middleware/errorMiddleware";
 
-
-
 const app = express();
 
 const mongodb_uri = process.env.MONGO_URI;
@@ -38,22 +36,13 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(urlencoded({extended:true}));
 console.log("CORS origin:", process.env.NODE_ENV === 'production' ? process.env.CLIENT_PROD_URL : process.env.CLIENT_DEV_URL);
-// app.use(cors({
-//   credentials: true,
-//   origin: process.env.NODE_ENV === 'production' ? process.env.CLIENT_PROD_URL : process.env.CLIENT_DEV_URL,
-// }));
-
 app.use(cors({
   credentials: true,
-  origin: process.env.NODE_ENV === 'production' ? process.env.CLIENT_PROD_URL : ["http://localhost:3000", "https://userrealm.onrender.com"],
+  origin: process.env.NODE_ENV === 'production' ? process.env.CLIENT_PROD_URL : process.env.CLIENT_DEV_URL,
 }));
-
 
 app.use(upload())
 app.use('/API/uploads', express.static(__dirname + '/API/uploads'));
-
-
-
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
