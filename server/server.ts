@@ -56,7 +56,9 @@ app.post('/api/posts/:creatorId', async (req, res) => {
     const { creatorId } = req.params;
     const { url } = req.body;
 
-    const browser = await puppeteer.launch({ headless: "new" });
+    console.log('Launching browser...');
+    const browser = await puppeteer.launch({ headless: true });
+    console.log('Browser launched successfully.');
     const page = await browser.newPage();
 
     await page.goto(url);
