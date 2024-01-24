@@ -29,7 +29,11 @@ export const Postdetail = () => {
           );
           setScreenshot(`data:image/png;base64,${response.data.screenshot}`);
         } catch (error) {
-          console.error("Failed to capture screenshot", error);
+          if (axios.isAxiosError(error)) {
+            console.error("Axios error:", error.message);
+          } else {
+            console.error("Unknown error:", error);
+          }
         }
       }
     };
