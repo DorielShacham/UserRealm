@@ -81,19 +81,8 @@ app.post('/api/posts/:creatorId', async (req, res) => {
   }
 });
 
-
-
 app.use(notFound);
 app.use(errorHandler);
-
-// app.get("/check", async (req, res) => {
-//   try {
-//     res.send({ ok: true, message: "hello" });
-//   } catch (error) {
-//     res.send({ error });
-//   }
-// });
-
 
 app.listen(PORT, () => {
   console.log(`server is active on port : ${PORT}`);
