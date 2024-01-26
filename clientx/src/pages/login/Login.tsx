@@ -27,7 +27,6 @@ export const Login = () => {
       const user = await response.data;
       setCurrentUser(user);
   
-      // Update localStorage
       localStorage.setItem('user', JSON.stringify(user));
   
       navigate('/');
