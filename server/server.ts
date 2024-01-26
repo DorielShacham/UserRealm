@@ -47,6 +47,7 @@ app.use('/API/uploads', express.static(__dirname + '/API/uploads'));
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
+
 app.post('/api/posts/:creatorId', async (req, res) => {
   try {
     const { creatorId } = req.params;

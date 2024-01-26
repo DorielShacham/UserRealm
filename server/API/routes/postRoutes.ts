@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createPost, getPosts, getLimitedPosts, getPost, getCatPosts, getUserPosts, editPost, deletePost } from '../controllers/postControllers';
+import { createPost, getPosts, searchPosts, getLimitedPosts, getPost, getCatPosts, getUserPosts, editPost, deletePost } from '../controllers/postControllers';
 import { authMiddleware } from "../middleware/authMiddleware";
 
 const router = Router();
@@ -7,6 +7,7 @@ const router = Router();
 
 router.post('/', authMiddleware , createPost);
 router.get('/', getPosts);
+router.get('/search', searchPosts);
 router.get('/limited', getLimitedPosts);
 router.get('/:id', getPost);
 router.get('/categories/:category', getCatPosts);
