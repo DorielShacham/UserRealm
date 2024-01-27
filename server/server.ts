@@ -16,8 +16,6 @@ const app = express();
 
 const mongodb_uri = process.env.MONGO_URI;
 const PORT = process.env.PORT;
-const corsOriginDev = process.env.CLIENT_DEV_URL;
-const corsOriginProd = process.env.CLIENT_PROD_URL;
 
 // mongoose 7 place this on false as default.
 mongoose.set("strictQuery", true);

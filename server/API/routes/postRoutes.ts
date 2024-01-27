@@ -7,7 +7,6 @@ const router = Router();
 
 router.post('/', authMiddleware , createPost);
 router.get('/', getPosts);
-router.get('/search', searchPosts);
 router.get('/limited', getLimitedPosts);
 router.get('/:id', getPost);
 router.get('/categories/:category', getCatPosts);
