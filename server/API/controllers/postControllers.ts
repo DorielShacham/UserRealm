@@ -80,7 +80,7 @@ const getPosts = async (req, res, next) => {
 };
 
 // get search posts by title
- const searchPosts = async (req, res) => {
+const searchPosts = async (req, res) => {
   const { title } = req.query;
   try {
     if (!title) {
