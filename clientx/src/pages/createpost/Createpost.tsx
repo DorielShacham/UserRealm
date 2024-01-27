@@ -103,7 +103,7 @@ export const Createpost = () => {
         postData,
         { withCredentials: true, headers: { Authorization: `Bearer ${token}` } }
       );
-      if (response.status == 201) {
+      if (response.status === 201) {
         return navigate("/");
       }
     } catch (err: any) {

@@ -91,7 +91,7 @@ export const Userprofile = () => {
       userData.set('confirmNewPassword', confirmNewPassword);
   
       const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}/users/edit-user`, userData, {withCredentials: true, headers: {Authorization: `Bearer ${token}`}});
-      if(response.status == 200) {
+      if(response.status === 200) {
         navigate('/logout')
       }
     } catch (error: any) {
