@@ -7,7 +7,6 @@ import bcrypt from "bcrypt"
 import jsonwebtoken from "jsonwebtoken"
 dotenv.config();
 import upload from 'express-fileupload';
-import puppeteer from 'puppeteer';
 import userRoutes from "./API/routes/userRoutes";
 import postRoutes from "./API/routes/postRoutes";
 import { errorHandler, notFound } from "./API/middleware/errorMiddleware";
@@ -33,18 +32,17 @@ mongoose
 app.use(express.json());
 app.use(cookieParser());
 app.use(urlencoded({extended:true}));
-console.log("CORS origin:", process.env.NODE_ENV === 'production' ? process.env.CLIENT_PROD_URL : process.env.CLIENT_DEV_URL);
 app.use(cors({credentials:true, origin: "http://localhost:3000"}));
-app.use(cors({
-  credentials: true,
-  origin: process.env.NODE_ENV === 'production' ? process.env.CLIENT_PROD_URL : process.env.CLIENT_DEV_URL,
-}));
+console.log("CORS origin:", process.env.NODE_ENV === 'production' ? process.env.CLIENT_PROD_URL : process.env.CLIENT_DEV_URL);
+// app.use(cors({
+//   credentials: true,
+//   origin: process.env.NODE_ENV === 'production' ? process.env.CLIENT_PROD_URL : process.env.CLIENT_DEV_URL,
+// }));
 
 app.use(upload())
 app.use('/API/uploads', express.static(__dirname + '/API/uploads'));
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
-
 
 // app.post('/api/posts/:creatorId', async (req, res) => {
 //   try {

@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
@@ -21,26 +20,10 @@ import { Dashboard } from "./pages/dashboard/Dashboard";
 import { Logout } from "./pages/logout/Logout";
 import UserProvider from "./contex/userContext";
 import About from "./pages/about/About";
+import { disableReactDevTools } from '@fvilers/disable-react-devtools'
 
-// function disableDevtools() {
-//   document.addEventListener("contextmenu", (e) => e.preventDefault());
+if(process.env.NODE_ENV === 'production') disableReactDevTools ();
 
-//   function ctrlShiftKey(e: KeyboardEvent, keyCode: string) {
-//     return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
-//   }
-
-//   document.onkeydown = (e) => {
-//     if (
-//       e.keyCode === 123 ||
-//       ctrlShiftKey(e, "I") ||
-//       ctrlShiftKey(e, "J") ||
-//       ctrlShiftKey(e, "C") ||
-//       (e.ctrlKey && e.keyCode === "U".charCodeAt(0))
-//     )
-//       return false;
-//   };
-// }
-// disableDevtools();
 
 const router = createBrowserRouter([
   {

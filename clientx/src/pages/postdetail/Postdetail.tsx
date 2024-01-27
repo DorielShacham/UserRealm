@@ -15,30 +15,8 @@ export const Postdetail = () => {
   const [error, setError] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [developerLink, setDeveloperLink] = useState<string | null>(null);
-  const [screenshot, setScreenshot] = useState<string | null>(null);
 
   const { currentUser } = useContext(UserContext);
-
-  // useEffect(() => {
-  //   const getScreenshot = async () => {
-  //     if (developerLink) {
-  //       try {
-  //         const response = await axios.post(
-  //           `${process.env.REACT_APP_BASE_URL}/posts/${post?.creator}`,
-  //           { url: developerLink }
-  //         );
-  //         setScreenshot(`data:image/png;base64,${response.data.screenshot}`);
-  //       } catch (error) {
-  //         if (axios.isAxiosError(error)) {
-  //           console.error("Axios error:", error.message);
-  //         } else {
-  //           console.error("Unknown error:", error);
-  //         }
-  //       }
-  //     }
-  //   };
-  //   getScreenshot();
-  // }, [developerLink, post?.creator]);
 
   useEffect(() => {
     const getPost = async () => {
@@ -103,9 +81,6 @@ export const Postdetail = () => {
                   </a>
                 </strong>{" "}
               </h3>
-              {screenshot && (
-                <img src={screenshot} alt="Developer Link Screenshot" />
-              )}
             </div>
           )}
         </div>
