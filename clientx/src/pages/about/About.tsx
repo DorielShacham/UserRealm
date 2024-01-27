@@ -1,7 +1,14 @@
 import './about.css';
+import { useState } from 'react';
 import Loader from '../../components/loader/Loader';
 
+
 const About = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div className="about">
       <section className="about__section">
