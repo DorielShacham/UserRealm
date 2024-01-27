@@ -48,29 +48,29 @@ app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
 
-app.post('/api/posts/:creatorId', async (req, res) => {
-  try {
-    const { creatorId } = req.params;
-    const { url } = req.body;
+// app.post('/api/posts/:creatorId', async (req, res) => {
+//   try {
+//     const { creatorId } = req.params;
+//     const { url } = req.body;
 
-    console.log('Launching browser...');
-    const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'], });
-    console.log('Browser launched successfully.');
-    const page = await browser.newPage();
+//     console.log('Launching browser...');
+//     const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'], });
+//     console.log('Browser launched successfully.');
+//     const page = await browser.newPage();
 
-    await page.goto(url);
-    await new Promise(resolve => setTimeout(resolve, 5000));
+//     await page.goto(url);
+//     await new Promise(resolve => setTimeout(resolve, 5000));
 
-    const screenshot = await page.screenshot();
+//     const screenshot = await page.screenshot();
 
-    await browser.close();
+//     await browser.close();
 
-    res.json({ success: true, screenshot: screenshot.toString('base64') });
-  } catch (error) {
-    console.error('Screenshot capture failed', error);
-    res.status(500).json({ success: false, error: 'Screenshot capture failed' });
-  }
-});
+//     res.json({ success: true, screenshot: screenshot.toString('base64') });
+//   } catch (error) {
+//     console.error('Screenshot capture failed', error);
+//     res.status(500).json({ success: false, error: 'Screenshot capture failed' });
+//   }
+// });
 
 app.use(notFound);
 app.use(errorHandler);
