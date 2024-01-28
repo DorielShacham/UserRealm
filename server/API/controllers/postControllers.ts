@@ -1,4 +1,3 @@
-import { Request, Response, NextFunction } from 'express'; 
 import postModel from "../models/postModel";
 import UserModel from "../models/userModel";
 import { HttpError } from "../models/errorModel";
@@ -79,21 +78,6 @@ const getPosts = async (req, res, next) => {
   }
 };
 
-// get search posts by title
-const searchPosts = async (req, res) => {
-  const { title } = req.query;
-  try {
-    if (!title) {
-      return res.status(400).json({ error: 'Title parameter is required for search.' });
-    }
-    const posts = await postModel.find({ title: { $regex: new RegExp(title as string, 'i') } });
-    res.json(posts);
-  } catch (error) {
-    console.error('Error searching posts:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
-
 // get limited posts GET (unprotected) - /api/posts/limited
 const getLimitedPosts = async (req, res, next) => {
   try {
@@ -106,7 +90,7 @@ const getLimitedPosts = async (req, res, next) => {
 };
 
 // get a single post GET (unprotected) - /api/posts/:id
-const getPost = async (req: Request, res: Response, next) => {
+const getPost = async (req, res, next) => {
   try {
     const postId = req.params.id;
     const post = await postModel.findById(postId);
@@ -120,7 +104,7 @@ const getPost = async (req: Request, res: Response, next) => {
 };
 
 // get post by category GET (unprotected) - /api/posts/categories/:category
-const getCatPosts = async (req: Request, res: Response, next) => {
+const getCatPosts = async (req, res, next) => {
   try {
     const category = req.params.category;
     const posts = await postModel.find({ category }).sort({ createdAt: -1 });
@@ -136,7 +120,7 @@ const getCatPosts = async (req: Request, res: Response, next) => {
 };
 
 // get post by username GET (unprotected) - /api/posts/users/:id
-const getUserPosts = async (req: Request, res: Response, next) => {
+const getUserPosts = async (req, res, next) => {
   try {
     const { id } = req.params;
     const posts = await postModel.find({ creator: id }).sort({ createdAt: -1 });
@@ -272,7 +256,6 @@ const deletePost = async (req, res, next) => {
 export {
   createPost,
   getPosts,
-  searchPosts,
   getLimitedPosts,
   getPost,
   getCatPosts,
