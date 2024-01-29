@@ -90,6 +90,8 @@ nav {
 @media screen and (max-width: 800px) {
     .nav__container {
         position: relative;
+        padding-top: 5rem;
+        margin: 0.5rem;
     }
 
     .nav__menu {
@@ -144,7 +146,12 @@ nav {
         background: transparent;
         font-size: 1.5rem;
         cursor: pointer;
+        position: absolute; 
+        color: var(--color-primary);
+        top: 2rem; 
+        right: 1rem; 
     }
+    
 
     #sphere {
         top: 0rem;
