@@ -11,7 +11,7 @@ export const Createpost = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("Uncategorized");
   const [description, setDescription] = useState("");
-  const [thumbnail, setThumbnail] = useState<any>("");
+  const [thumbnail, setThumbnail] = useState<string>("");
   const [developerLink, setDeveloperLink] = useState("");
   const [error, setError] = useState<any>(null);
 
@@ -113,8 +113,15 @@ export const Createpost = () => {
   };
 
   const handleThumbnailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = (e.target.files as FileList)?.[0];
-    setThumbnail(file);
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64String = reader.result?.toString();
+        setThumbnail(base64String || "");
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
