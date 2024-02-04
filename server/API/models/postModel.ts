@@ -33,6 +33,7 @@ const postSchema = new Schema({
     thumbnail: { type: String, required: true},
     creator: { type: Schema.Types.ObjectId, ref: "User" },
     developerLink: { type: String },
+    likes: [{ type: Schema.Types.ObjectId, ref: "User" }],
 },{timestamps: true});
 
 const postModel = model('Post', postSchema);

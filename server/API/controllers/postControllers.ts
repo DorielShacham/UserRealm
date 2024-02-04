@@ -6,8 +6,30 @@ import path from "path";
 import { v4 as uuid } from "uuid";
 import { Types } from 'mongoose';
 
+// Like a Post POST (protected) - /api/posts/:postId/like
+const likePost = async (req, res, next) => {
+  try {
+    const postId = req.params.postId;
+    const userId = req.user.userId;
+
+    // Check if the user has already liked the post
+    const post = await postModel.findById(postId);
+    if (post.likes.includes(userId)) {
+      return next(new HttpError("User has already liked this post", 400));
+    }
+
+    // Add the user ID to the likes array
+    post.likes.push(userId);
+    await post.save();
+
+    res.status(200).json({ message: "Post liked successfully" });
+  } catch (error) {
+    return next(new HttpError("Error liking post", 500));
+  }
+};
+
 // creating a post POST (protected) - /api/posts
-const createPost = async (req , res, next) => {
+const createPost = async (req, res, next) => {
   try {
     let { title, category, description, developerLink } = req.body;
     if (!title || !category || !description || !req.files) {
@@ -46,6 +68,7 @@ const createPost = async (req , res, next) => {
             developerLink, 
             thumbnail: newFileName,
             creator: new Types.ObjectId(req.user.userId),
+            likes: [],
           });
 
           // add user posts by 1
@@ -254,6 +277,7 @@ const deletePost = async (req, res, next) => {
 
 
 export {
+  likePost,
   createPost,
   getPosts,
   getLimitedPosts,

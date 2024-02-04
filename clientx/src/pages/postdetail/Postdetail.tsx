@@ -6,6 +6,7 @@ import { Deletepost } from "../deletepost/Deletepost";
 import { PostAuthor } from "../../components/posts/PostAuthor";
 import { Link, useParams } from "react-router-dom";
 import { Post } from "../../components/posts/Posts";
+import LikeButton from "../../components/likeButton/LikeButton";
 import axios from "axios";
 
 export const Postdetail = () => {
@@ -53,6 +54,9 @@ export const Postdetail = () => {
         <div className="container post-detail__container">
           <div className="post-detail__header">
             <PostAuthor developerID={post.creator} createdAt={post.createdAt} />
+            {currentUser && (
+              <LikeButton postId={id || ""} currentUser={currentUser} />
+            )}
             {currentUser?.userId === post?.creator && (
               <div className="post-detail__buttons">
                 <Link to={`/posts/${post._id}/edit`} className="btn sm primary">
@@ -66,6 +70,7 @@ export const Postdetail = () => {
           <div className="post-detail__thumbnail">
             <img src={imgUrl} alt="Blog Picture" />
           </div>
+
           <p dangerouslySetInnerHTML={{ __html: post.description }}></p>
           {developerLink !== null && (
             <div className="post-detail__developer-link">
