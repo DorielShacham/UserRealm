@@ -1,10 +1,11 @@
 import "./editpost.css";
 import { useContext, useEffect, useState } from "react";
+import { FaFileImage } from "react-icons/fa";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../contex/userContext";
-import axios from 'axios';
+import axios from "axios";
 
 export const Editpost = () => {
   const [title, setTitle] = useState("");
@@ -14,7 +15,7 @@ export const Editpost = () => {
   const [developerLink, setDeveloperLink] = useState<string>("");
   const [error, setError] = useState("");
 
-  const {id} = useParams();
+  const { id } = useParams();
 
   const { currentUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -22,15 +23,17 @@ export const Editpost = () => {
   const token = currentUser?.token;
 
   useEffect(() => {
-    if(!token){
-      navigate('/login')
+    if (!token) {
+      navigate("/login");
     }
-  },[])
+  }, []);
 
   useEffect(() => {
     const getPost = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/posts/${id}`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/posts/${id}`
+        );
         setTitle(response.data.title);
         setDescription(response.data.description);
         setDeveloperLink(response.data.developerLink || "");
@@ -38,31 +41,35 @@ export const Editpost = () => {
       } catch (error) {
         console.error(error);
       }
-    }
+    };
     getPost();
-  }, [id])
+  }, [id]);
 
-  const editPost = async (e: { preventDefault: () => void; }) => {
+  const editPost = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const postData = new FormData();
-    postData.set('title', title);
-    postData.set('category', category || "Uncategorized");
-    postData.set('description', description);
-    postData.set('thumbnail', thumbnail);
+    postData.set("title", title);
+    postData.set("category", category || "Uncategorized");
+    postData.set("description", description);
+    postData.set("thumbnail", thumbnail);
     if (developerLink.trim() !== "") {
       postData.set("developerLink", developerLink.trim());
     }
 
     try {
-      const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}/posts/${id}`, postData, {withCredentials:true, headers: {Authorization: `Bearer ${token}`}});
-      if(response.status === 200){
-        navigate('/');
+      const response = await axios.patch(
+        `${process.env.REACT_APP_BASE_URL}/posts/${id}`,
+        postData,
+        { withCredentials: true, headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (response.status === 200) {
+        navigate("/");
       }
     } catch (err: any) {
       console.error(err);
       setError(err.response.data.message);
     }
-  }
+  };
 
   const modules = {
     toolbar: [
@@ -159,15 +166,19 @@ export const Editpost = () => {
             value={description}
             onChange={setDescription}
           />
-          <input
-            type="file"
-            onChange={handleThumbnailChange}
-            accept="png, jpg, jpeg"
-          />
+          <label htmlFor="thumbnailInput" className="file-input-label">
+            <FaFileImage />
+            <input
+              id="thumbnailInput"
+              type="file"
+              onChange={handleThumbnailChange}
+              accept="image/png, image/jpeg"
+            />
+          </label>
           <input
             type="text"
             placeholder="Project Link (optional)"
-            value={developerLink || ""} 
+            value={developerLink || ""}
             onChange={(e) => setDeveloperLink(e.target.value)}
           />
           <button type="submit" className="btn primary">

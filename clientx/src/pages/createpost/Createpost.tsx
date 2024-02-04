@@ -1,5 +1,6 @@
 import "./createpost.css";
 import { useState, useContext, useEffect } from "react";
+import { FaFileImage } from "react-icons/fa";
 import ReactQuill from "react-quill";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contex/userContext";
@@ -144,11 +145,16 @@ export const Createpost = () => {
             value={description}
             onChange={setDescription}
           />
-          <input
-            type="file"
-            onChange={handleThumbnailChange}
-            accept="png, jpg, jpeg"
-          />
+          <label htmlFor="thumbnailInput" className="file-input-label">
+            <FaFileImage />
+            <input
+              id="thumbnailInput"
+              type="file"
+              onChange={handleThumbnailChange}
+              accept="image/png, image/jpeg"
+            />
+          </label>
+
           <input
             type="text"
             placeholder="Project Link (optional)"
