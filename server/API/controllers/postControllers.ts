@@ -26,65 +26,39 @@ const likePost = async (req, res, next) => {
   }
 };
 
-
 // creating a post POST (protected) - /api/posts
 const createPost = async (req, res, next) => {
   try {
-    let { title, category, description, developerLink } = req.body;
-    if (!title || !category || !description || !req.files) {
+    let { title, category, description, developerLink, thumbnail } = req.body;
+    if (!title || !category || !description || !thumbnail) {
       return next(new HttpError("Fill in all required fields", 422));
     }
-    const { thumbnail } = req.files;
 
-    // check files size
-    if (thumbnail.size > 2000000) {
-      return next(
-        new HttpError(
-          "File size is too large, please choose a file less than 2mb",
-          422
-        )
-      );
+    // Decode the base64 encoded thumbnail
+    const base64Data = thumbnail.replace(/^data:image\/\w+;base64,/, "");
+
+    const newPost = await postModel.create({
+      title,
+      category,
+      description,
+      developerLink, 
+      thumbnail: base64Data, // Save the base64 string directly to MongoDB
+      creator: new Types.ObjectId(req.user.userId),
+      likes: [],
+    });
+
+    // add user posts by 1
+    const currentUser = await UserModel.findById(req.user.userId);
+    if (!currentUser) {
+      return next(new HttpError("Current user not found", 404));
     }
 
-    let fileName = thumbnail.name;
-    let splittedFileName = fileName.split(".");
-    let newFileName =
-      splittedFileName[0] +
-      uuid() +
-      "." +
-      splittedFileName[splittedFileName.length - 1];
+    const userPostCount = currentUser.posts + 1;
+    await UserModel.findByIdAndUpdate(req.user.userId, {
+      posts: userPostCount,
+    });
 
-    thumbnail.mv(
-      path.join(__dirname, "..", "/uploads", newFileName),
-      async (err) => {
-        if (err) {
-          return next(new HttpError(err, 403));
-        } else {
-          const newPost = await postModel.create({
-            title,
-            category,
-            description,
-            developerLink, 
-            thumbnail: newFileName,
-            creator: new Types.ObjectId(req.user.userId),
-            likes: [],
-          });
-
-          // add user posts by 1
-          const currentUser = await UserModel.findById(req.user.userId);
-          if (!currentUser) {
-            return next(new HttpError("Current user not found", 404));
-          }
-
-          const userPostCount = currentUser.posts + 1;
-          await UserModel.findByIdAndUpdate(req.user.userId, {
-            posts: userPostCount,
-          });
-
-          res.status(201).json(newPost);
-        }
-      }
-    );
+    res.status(201).json(newPost);
   } catch (error) {
     return next(new HttpError(error, 404));
   }
@@ -155,75 +129,24 @@ const getUserPosts = async (req, res, next) => {
 // Edit Post PATCH (protected) - /api/posts/:id
 const editPost = async (req, res, next) => {
   try {
-    let fileName;
-    let newFileName;
     let updatedPost;
     const postId = req.params.id;
-    let { title, category, description, developerLink } = req.body;
+    let { title, category, description, developerLink, thumbnail } = req.body;
 
-    if (!title || !category || description.length < 12) {
+    if (!title || !category || description.length < 12 || !thumbnail) {
       return next(new HttpError("Please fill in all required fields", 400));
     }
 
-    if (!req.files) {
-      // No new thumbnail, update post without changing the thumbnail // || !req.files.thumbnail
-      updatedPost = await postModel.findByIdAndUpdate(
-        postId,
-        { title, category, description, developerLink },
-        { new: true }
-      );
-    } else {
-      const oldPost = await postModel.findById(postId);
+    // Decode the base64 encoded thumbnail
+    const base64Data = thumbnail.replace(/^data:image\/\w+;base64,/, "");
 
-    // check if user = postId
-    const post = await postModel.findById(postId);
-    const creatorId = new Types.ObjectId(req.user.userId);
-    if (creatorId.equals(post.creator)) {
-      // Delete old thumbnail
-      fs.unlink(
-        path.join(__dirname, "..", "/uploads", oldPost.thumbnail),
-        async (err) => {
-          if (err) {
-            return next(new HttpError("Error replacing thumbnail", 422));
-          }
-        }
-      );
+    // Update post with the new thumbnail
+    updatedPost = await postModel.findByIdAndUpdate(
+      postId,
+      { title, category, description, thumbnail: base64Data, developerLink },
+      { new: true }
+    );
 
-      const {thumbnail} = req.files; 
-
-      // Check size
-      if (thumbnail.size > 2000000) {
-        return next(new HttpError("Thumbnail size is over 2mb", 422));
-      }
-
-      fileName = thumbnail.name;
-let splittedFileName = fileName.split('.');
-let fileExtension = splittedFileName.pop(); 
-newFileName =
-  splittedFileName.join('.') +
-  uuid() +
-  '.' +
-  fileExtension;
-
-      thumbnail.mv(
-        path.join(__dirname, "..", "/uploads", newFileName),
-        async (err) => {
-          if (err) {
-            return next(
-              new HttpError("New post image did not send correctly", 422)
-            );
-          }
-        }
-      );
-
-      // Update post with a new thumbnail
-      updatedPost = await postModel.findByIdAndUpdate(
-        postId,
-        { title, category, description, thumbnail: newFileName, developerLink },
-        { new: true }
-      );
-    }
-  };
     if (!updatedPost) {
       return next(new HttpError("Issue while updating the post", 400));
     }
