@@ -27,6 +27,7 @@ select {
   position: relative;
   display: inline-block;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .file-input-label input[type="file"] {

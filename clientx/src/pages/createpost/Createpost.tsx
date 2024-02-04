@@ -146,7 +146,7 @@ export const Createpost = () => {
             onChange={setDescription}
           />
           <label htmlFor="thumbnailInput" className="file-input-label">
-            <FaFileImage />
+            Upload Image <FaFileImage />
             <input
               id="thumbnailInput"
               type="file"
