@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { AiFillLike } from "react-icons/ai";
+import { AiOutlineLike } from "react-icons/ai";
+
 import "./likeButton.css";
 import axios from 'axios';
 
@@ -25,7 +28,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser }) => {
 
   return (
     <button className='btn sm like' onClick={handleLikeClick} disabled={isLiked}>
-      {isLiked ? 'Liked' : 'Like'}
+      {isLiked ? <AiFillLike /> : <AiOutlineLike />}
     </button>
   );
 };

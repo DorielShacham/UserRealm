@@ -125,19 +125,21 @@ input, select, textarea {
 .btn.primary{
   background: var(--color-primary);
   color: var(--color-white);
-  border: 0.2rem dotted black;
 }
 
 .btn.danger{
   background: var(--color-red);
   color: var(--color-white);
-  border: 0.2rem dotted black;
 }
 
 .btn.like{
-  background: rgb(255, 217, 0);
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: var(--color-primary);
   color: var(--color-white);
-  border: 0.2rem dotted black;
 }
 
 .btn.category{

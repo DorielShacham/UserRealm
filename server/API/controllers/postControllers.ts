@@ -12,13 +12,11 @@ const likePost = async (req, res, next) => {
     const postId = req.params.postId;
     const userId = req.user.userId;
 
-    // Check if the user has already liked the post
     const post = await postModel.findById(postId);
     if (post.likes.includes(userId)) {
       return next(new HttpError("User has already liked this post", 400));
     }
 
-    // Add the user ID to the likes array
     post.likes.push(userId);
     await post.save();
 
@@ -27,6 +25,7 @@ const likePost = async (req, res, next) => {
     return next(new HttpError("Error liking post", 500));
   }
 };
+
 
 // creating a post POST (protected) - /api/posts
 const createPost = async (req, res, next) => {
