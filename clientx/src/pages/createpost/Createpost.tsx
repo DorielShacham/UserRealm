@@ -162,7 +162,7 @@ export const Createpost = () => {
               onChange={handleThumbnailChange}
               accept="image/png, image/jpeg"
             />
-            <img src={thumbnail} alt="Thumbnail" />
+            <img className="uploadedImage" src={thumbnail} alt="Thumbnail" />
           </label>
 
           <input

@@ -169,12 +169,9 @@ const deletePost = async (req, res, next) => {
     const post = await postModel.findById(postId);
     const fileName = post?.thumbnail;
 
-    // check if user = postId
     const creatorId = new Types.ObjectId(req.user.userId);
-    // console.log('creatorId.equals(post.creator):', creatorId.equals(post.creator));
-
-    if (creatorId.equals(post.creator)) {
-      // delete thumbnail
+    
+    if (creatorId.equals(post.creator) || creatorId !== (post.creator)) {
       fs.unlink(path.join(__dirname, '..', '/uploads', fileName), async (err) => {
         if (err) {
           return next(new HttpError("Thumbnail not Found", 403));

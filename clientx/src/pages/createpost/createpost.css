@@ -22,6 +22,10 @@ select {
     width: 100%;
   }
 }
+.uploadedImage{
+  width: 15rem;
+  height: 15rem;
+}
 
 .file-input-label {
   position: relative;

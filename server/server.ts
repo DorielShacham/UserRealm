@@ -10,6 +10,7 @@ import upload from 'express-fileupload';
 import userRoutes from "./API/routes/userRoutes";
 import postRoutes from "./API/routes/postRoutes";
 import { errorHandler, notFound } from "./API/middleware/errorMiddleware";
+import bodyParser from "body-parser";
 
 const app = express();
 
@@ -29,10 +30,10 @@ mongoose
     console.error(err.message);
   });
 
+app.use(bodyParser.json({ limit: "5mb" }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(urlencoded({extended:true}));
-// app.use(cors({credentials:true, origin: "http://localhost:3000"}));
 console.log("CORS origin:", process.env.NODE_ENV === 'production' ? process.env.CLIENT_PROD_URL : process.env.CLIENT_DEV_URL);
 app.use(cors({
   credentials: true,
@@ -40,7 +41,7 @@ app.use(cors({
 }));
 
 app.use(upload())
-app.use('/API/uploads', express.static(__dirname + '/API/uploads'));
+// app.use('/API/uploads', express.static(__dirname + '/API/uploads'));
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
