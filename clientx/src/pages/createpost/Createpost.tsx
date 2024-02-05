@@ -115,12 +115,14 @@ export const Createpost = () => {
   const handleThumbnailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      console.log(file)
       const reader = new FileReader();
       reader.onload = () => {
         const base64String = reader.result?.toString();
         setThumbnail(base64String || "");
       };
       reader.readAsDataURL(file);
+      console.log(file)
     }
   };
 
@@ -160,6 +162,7 @@ export const Createpost = () => {
               onChange={handleThumbnailChange}
               accept="image/png, image/jpeg"
             />
+            <img src={thumbnail} alt="Thumbnail" />
           </label>
 
           <input
