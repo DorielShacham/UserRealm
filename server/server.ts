@@ -41,7 +41,6 @@ app.use(cors({
 }));
 
 app.use(upload())
-// app.use('/API/uploads', express.static(__dirname + '/API/uploads'));
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 

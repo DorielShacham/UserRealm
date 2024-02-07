@@ -34,9 +34,6 @@ const createPost = async (req, res, next) => {
       return next(new HttpError("Fill in all required fields", 422));
     }
 
-    // Decode the base64 encoded thumbnail
-    // const base64Data = thumbnail.replace(/^data:image\/\w+;base64,/, "");
-
     const newPost = await postModel.create({
       title,
       category,

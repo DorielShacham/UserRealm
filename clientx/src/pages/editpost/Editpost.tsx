@@ -53,7 +53,7 @@ export const Editpost = () => {
     postData.append("category", category || "Uncategorized");
     postData.append("description", description);
     if (thumbnail instanceof File) {
-      postData.append("thumbnail", thumbnail); // Only append if thumbnail is a file object
+      postData.append("thumbnail", thumbnail);
     }
     if (developerLink.trim() !== "") {
       postData.append("developerLink", developerLink.trim());
@@ -67,7 +67,7 @@ export const Editpost = () => {
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data", // Make sure to set Content-Type
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -139,10 +139,30 @@ export const Editpost = () => {
     "Uncategorized",
   ];
 
-  const handleThumbnailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = (e.target.files as FileList)?.[0];
-    setThumbnail(file ? URL.createObjectURL(file) : null);
+  const handleThumbnailChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      console.log(file)
+      const base64 = await convertIntoBit64(file)
+      setThumbnail(base64)
+    }
   };
+
+  const convertIntoBit64 = (file:File) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        //@ts-ignore
+        resolve(reader.result)
+      };
+      reader.onerror = (error) => {
+        //@ts-ignore
+        reject(error)
+      }
+    })
+  }
+  
 
   return (
     <section className="create-post">

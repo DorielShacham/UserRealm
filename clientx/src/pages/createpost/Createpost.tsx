@@ -123,10 +123,7 @@ export const Createpost = () => {
     if (file) {
       console.log(file)
       const base64 = await convertIntoBit64(file)
-
       setThumbnail(base64)
-      // console.log(file)
-      
     }
   };
 
@@ -135,8 +132,6 @@ export const Createpost = () => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        // const base64String = reader.result?.toString();
-        // setThumbnail(base64String || "");
         //@ts-ignore
         resolve(reader.result)
       };
