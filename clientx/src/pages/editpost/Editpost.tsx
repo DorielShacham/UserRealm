@@ -52,6 +52,7 @@ export const Editpost = () => {
     postData.append("title", title);
     postData.append("category", category || "Uncategorized");
     postData.append("description", description);
+    postData.append("thumbnail", thumbnail);
     if (thumbnail instanceof File) {
       postData.append("thumbnail", thumbnail);
     }
