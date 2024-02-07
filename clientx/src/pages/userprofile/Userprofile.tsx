@@ -26,7 +26,7 @@ export const Userprofile = () => {
     setIsHovered(false);
   };
 
-  const imgUrl = avatar ? `${process.env.REACT_APP_ASSETS_URL}/API/uploads/${avatar}` : '';
+  const imgUrl = avatar ? `${process.env.REACT_APP_ASSETS_URL}/API${avatar}` : '';
 
   const { currentUser } = useContext(UserContext);
   const navigate = useNavigate();

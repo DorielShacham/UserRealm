@@ -42,7 +42,7 @@ const createPost = async (req, res, next) => {
       category,
       description,
       developerLink, 
-      thumbnail: base64Data, // Save the base64 string directly to MongoDB
+      thumbnail,
       creator: new Types.ObjectId(req.user.userId),
       likes: [],
     });
