@@ -35,7 +35,7 @@ const createPost = async (req, res, next) => {
     }
 
     // Decode the base64 encoded thumbnail
-    const base64Data = thumbnail.replace(/^data:image\/\w+;base64,/, "");
+    // const base64Data = thumbnail.replace(/^data:image\/\w+;base64,/, "");
 
     const newPost = await postModel.create({
       title,

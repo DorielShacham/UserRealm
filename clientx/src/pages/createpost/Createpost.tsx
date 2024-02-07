@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contex/userContext";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
+import { resolve } from "node:path/win32";
+import { rejects } from "node:assert";
 
 export const Createpost = () => {
   const [title, setTitle] = useState("");
@@ -118,19 +120,33 @@ export const Createpost = () => {
     }
   };
 
-  const handleThumbnailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleThumbnailChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       console.log(file)
-      const reader = new FileReader();
-      reader.onload = () => {
-        const base64String = reader.result?.toString();
-        setThumbnail(base64String || "");
-      };
-      reader.readAsDataURL(file);
-      console.log(file)
+      const base64 = await convertIntoBit64(file)
+      setThumbnail(base64)
+      // console.log(file)
+      
     }
   };
+
+  const convertIntoBit64 = (file:File) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        // const base64String = reader.result?.toString();
+        // setThumbnail(base64String || "");
+        //@ts-ignore
+        resolve(reader.result)
+      };
+      reader.onerror = (error) => {
+        //@ts-ignore
+        reject(error)
+      }
+    })
+  }
 
   return (
     <section className="create-post">

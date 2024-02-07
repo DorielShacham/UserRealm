@@ -30,7 +30,7 @@ export const PostItem = ({
       <Link to={`/posts/${postID}`}>
         <div className="post__thumbnail">
           <img className="thumbnail__img"
-            src={imgUrl}
+            src={thumbnail}
             alt={title}
           />
         </div>
