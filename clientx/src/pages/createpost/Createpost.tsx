@@ -1,19 +1,17 @@
-import "./createpost.css";
-import { useState, useContext, useEffect } from "react";
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
 import { FaFileImage } from "react-icons/fa";
 import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contex/userContext";
-import "react-quill/dist/quill.snow.css";
-import axios from "axios";
-import { resolve } from "node:path/win32";
-import { rejects } from "node:assert";
+import "./createpost.css";
 
 export const Createpost = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("Uncategorized");
   const [description, setDescription] = useState("");
-  const [thumbnail, setThumbnail] = useState<string>("");
+  const [thumbnail, setThumbnail] = useState<any>("");
   const [developerLink, setDeveloperLink] = useState("");
   const [error, setError] = useState<any>(null);
 
@@ -125,6 +123,7 @@ export const Createpost = () => {
     if (file) {
       console.log(file)
       const base64 = await convertIntoBit64(file)
+
       setThumbnail(base64)
       // console.log(file)
       
