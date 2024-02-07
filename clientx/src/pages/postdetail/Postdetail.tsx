@@ -44,7 +44,7 @@ export const Postdetail = () => {
   }
 
   const imgUrl = post?.thumbnail
-    ? `${process.env.REACT_APP_ASSETS_URL}/API${post.thumbnail}`
+    ? `${process.env.REACT_APP_ASSETS_URL}/API/${post.thumbnail}`
     : "";
 
   return (

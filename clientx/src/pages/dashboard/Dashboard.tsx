@@ -63,7 +63,7 @@ export const Dashboard = () => {
               <div className="dashboard__post-info">
                 <div className="dashboard__post-thumbnail">
                   <img className="thumbnails__img"
-                    src={`${process.env.REACT_APP_ASSETS_URL}/API${post.thumbnail}`}
+                    src={`${process.env.REACT_APP_ASSETS_URL}/API/${post.thumbnail}`}
                     alt="Project Image"
                   />
                 </div>

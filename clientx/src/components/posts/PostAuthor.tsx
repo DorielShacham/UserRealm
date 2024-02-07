@@ -42,7 +42,7 @@ export const PostAuthor: React.FC<PostAuthorProps> = ({ developerID, createdAt }
   return (
     <Link to={`/posts/users/${developerID}`} className="post__author">
       <div className="post__author-avatar">
-      <img className="postAvatarImg" src={`${process.env.REACT_APP_ASSETS_URL}/api${(developer as Developer)?.avatar}`} alt="user avatar" />
+      <img className="postAvatarImg" src={`${process.env.REACT_APP_ASSETS_URL}/api/${(developer as Developer)?.avatar}`} alt="user avatar" />
       </div>
       <div className="post__author-details">
         {developer && <h5>By: {developer.name}</h5>}
