@@ -47,20 +47,29 @@ export const Editpost = () => {
 
   const editPost = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+  
     const postData = new FormData();
-    postData.set("title", title);
-    postData.set("category", category || "Uncategorized");
-    postData.set("description", description);
-    postData.set("thumbnail", thumbnail);
+    postData.append("title", title);
+    postData.append("category", category || "Uncategorized");
+    postData.append("description", description);
+    if (thumbnail instanceof File) {
+      postData.append("thumbnail", thumbnail); // Only append if thumbnail is a file object
+    }
     if (developerLink.trim() !== "") {
-      postData.set("developerLink", developerLink.trim());
+      postData.append("developerLink", developerLink.trim());
     }
 
     try {
       const response = await axios.patch(
         `${process.env.REACT_APP_BASE_URL}/posts/${id}`,
         postData,
-        { withCredentials: true, headers: { Authorization: `Bearer ${token}` } }
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data", // Make sure to set Content-Type
+          },
+        }
       );
       if (response.status === 200) {
         navigate("/");

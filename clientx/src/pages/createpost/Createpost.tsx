@@ -89,20 +89,26 @@ export const Createpost = () => {
     e.preventDefault();
 
     const postData = new FormData();
-    postData.set("title", title);
-    postData.set("category", category);
-    postData.set("description", description);
-    postData.set("thumbnail", thumbnail);
+    postData.append("title", title);
+    postData.append("category", category);
+    postData.append("description", description);
+    postData.append("thumbnail", thumbnail);
 
     if (developerLink.trim() !== "") {
-      postData.set("developerLink", developerLink.trim());
+      postData.append("developerLink", developerLink.trim());
     }
 
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/posts`,
         postData,
-        { withCredentials: true, headers: { Authorization: `Bearer ${token}` } }
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       if (response.status === 201) {
         return navigate("/");
