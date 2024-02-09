@@ -64,21 +64,24 @@ export const Userprofile = () => {
   const changeAvatar = async () => {
     setIsAvatarTouched(false);
     try {
-      const postData = new FormData();
-      postData.set('avatar', avatar);
-      const config = {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
-        },
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        try {
+          const avatarDataUrl = reader.result; 
+          const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/users/change-avatar`, { avatar: avatarDataUrl }, { headers: { Authorization: `Bearer ${token}` } });
+          setAvatar(avatarDataUrl);
+        } catch (error) {
+          console.log(error);
+        }
       };
-      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/users/change-avatar`, postData, config);
-      setAvatar(response?.data.avatar);
+      if (avatar) {
+        reader.readAsDataURL(avatar);
+      }
     } catch (error) {
       console.log(error);
     }
-    
-  }
+  };
+  
 
   const updateUserDetails = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();

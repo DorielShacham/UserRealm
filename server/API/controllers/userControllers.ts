@@ -119,7 +119,7 @@ const getUser = async (req, res, next) => {
 //change user avatar(protected) - /api/users/change-avatar
 const changeAvatar = async (req, res, next) => {
   try {
-    if (!req.files.avatar) {
+    if (!req.body.avatar) {
       return next(new HttpError("Please choose an image", 422));
     }
 
@@ -130,55 +130,38 @@ const changeAvatar = async (req, res, next) => {
       return next(new HttpError("User not found", 404));
     }
 
-    //check if user already have avatar
+    // Check if the user already has an avatar
     if (user.avatar) {
-      fs.unlink(path.join(__dirname, "..", "uploads", user.avatar), (err) => {
-        if (err) {
-          console.error("Error deleting avatar file:", err);
-          return next(new HttpError(err, 403));
-        }
-      });
+      // No need to delete previous avatar as it will be overwritten
+      console.log("new avatar created")
     }
-    //check file size
-    const { avatar } = req.files;
-    if (avatar.size > 500000) {
-      return next(
-        new HttpError("Picture size to big, should be less then 5kb", 422)
-      );
+
+    // Save the base64 string representation of the new avatar
+    const newAvatar = req.body.avatar;
+
+    // Check file size (optional)
+    if (Buffer.byteLength(newAvatar, 'base64') > 500000) {
+      return next(new HttpError("Picture size too big, should be less than 500kb", 422));
     }
-    //check name of file
-    let fileName;
-    fileName = avatar.name;
-    let splitFileName = fileName.split(".");
-    let newFileName =
-      splitFileName[0] + uuid() + "." + splitFileName[splitFileName.length - 1];
-    avatar.mv(
-      path.join(__dirname, "..", "/uploads", newFileName),
-      async (err) => {
-        if (err) {
-          return next(new HttpError(err, 422));
-        }
-        const updatedAvatar = await UserModel.findByIdAndUpdate(
-          req.user.userId,
-          { avatar: newFileName },
-          { new: true }
-        );
-        if (!updatedAvatar) {
-          return next(
-            new HttpError(
-              "Avatar could not be change, issue with file name",
-              422
-            )
-          );
-        }
-        res.status(200).json(updatedAvatar);
-      }
+
+    // Update the user document with the new avatar
+    const updatedUser = await UserModel.findByIdAndUpdate(
+      req.user.userId,
+      { avatar: newAvatar },
+      { new: true }
     );
+
+    if (!updatedUser) {
+      return next(new HttpError("Failed to update user avatar", 500));
+    }
+
+    res.status(200).json(updatedUser);
   } catch (error) {
-    console.error("error while changing the avatar", error);
-    return next(new HttpError(error, 413));
+    console.error("Error while changing the avatar:", error);
+    return next(new HttpError("Error while changing the avatar", 500));
   }
 };
+
 
 // edit user profile (protected) - /api/users/edit-user
 const editUser = async (req, res, next) => {
