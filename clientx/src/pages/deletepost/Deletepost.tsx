@@ -38,7 +38,6 @@ export const Deletepost: React.FC<DeletepostProps> = ({ postId }: DeletepostProp
     }
   };
 
-  // Redirect to login page for offline users
   useEffect(() => {
     if (!token) {
       navigate('/login');

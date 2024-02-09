@@ -134,9 +134,6 @@ const editPost = async (req, res, next) => {
       return next(new HttpError("Please fill in all required fields", 400));
     }
 
-    // Decode the base64 encoded thumbnail
-    // const base64Data = thumbnail.replace(/^data:image\/\w+;base64,/, "");
-
     // Update post with the new thumbnail
     updatedPost = await postModel.findByIdAndUpdate(
       postId,
@@ -169,7 +166,7 @@ const deletePost = async (req, res, next) => {
     const creatorId = new Types.ObjectId(req.user.userId);
     
     if (creatorId.equals(post.creator) || creatorId !== (post.creator)) {
-      fs.unlink(path.join(__dirname, '..', '/uploads', fileName), async (err) => {
+      if(!fileName) async (err) => {
         if (err) {
           return next(new HttpError("Thumbnail not Found", 403));
         } else {
@@ -180,7 +177,7 @@ const deletePost = async (req, res, next) => {
           await UserModel.findByIdAndUpdate(req.user.userId, { posts: userPostCount });
           res.json(`Post ${postId} deleted Successfully`);
         }
-      });
+      };
     } else {
       return next(new HttpError("Issue deleting Post", 403));
     }
