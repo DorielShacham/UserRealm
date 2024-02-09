@@ -204,6 +204,7 @@ export const Editpost = () => {
               onChange={handleThumbnailChange}
               accept="image/png, image/jpeg"
             />
+            <img className="uploadedImage" src={thumbnail} alt="Thumbnail" />
           </label>
           <input
             type="text"

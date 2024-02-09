@@ -135,12 +135,12 @@ const editPost = async (req, res, next) => {
     }
 
     // Decode the base64 encoded thumbnail
-    const base64Data = thumbnail.replace(/^data:image\/\w+;base64,/, "");
+    // const base64Data = thumbnail.replace(/^data:image\/\w+;base64,/, "");
 
     // Update post with the new thumbnail
     updatedPost = await postModel.findByIdAndUpdate(
       postId,
-      { title, category, description, thumbnail: base64Data, developerLink },
+      { title, category, description, thumbnail, developerLink },
       { new: true }
     );
 
