@@ -2,9 +2,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { HttpError } from "../models/errorModel";
 import UserModel from "../models/userModel";
-import fs from "fs";
-import path from "path";
-import { v4 as uuid } from "uuid";
 
 const jwtSecret = process.env.JWT_SECRET;
 
