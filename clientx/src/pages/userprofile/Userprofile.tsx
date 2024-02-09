@@ -109,7 +109,7 @@ export const Userprofile = () => {
         <div className="profile__details">
           <div className="avatar__wrapper">
             <div className="profile__avatar" onMouseEnter={handleHover} onMouseLeave={handleLeave}>
-              <img className="imageText" src={imgUrl} alt="" />
+              <img className="imageText" src={avatar} alt="" />
             </div>
             {isHovered && !imgUrl && (
               <div className="avatar__guide">
