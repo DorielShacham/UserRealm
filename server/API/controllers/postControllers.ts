@@ -159,34 +159,26 @@ const deletePost = async (req, res, next) => {
     if (!postId) {
       return next(new HttpError("Post not Found", 400));
     }
-
     const post = await postModel.findById(postId);
-    const fileName = post?.thumbnail;
 
-    const creatorId = new Types.ObjectId(req.user.userId);
-    
-    if (creatorId.equals(post.creator) || creatorId !== (post.creator)) {
-      if(!fileName) async (err) => {
-        if (err) {
-          return next(new HttpError("Thumbnail not Found", 403));
-        } else {
-          await postModel.findByIdAndDelete(postId);
-          // find user and remove 1 post
-          const currentUser = await UserModel.findById(req.user.userId);
-          const userPostCount = currentUser?.posts - 1;
-          await UserModel.findByIdAndUpdate(req.user.userId, { posts: userPostCount });
-          res.json(`Post ${postId} deleted Successfully`);
-        }
-      };
-    } else {
-      return next(new HttpError("Issue deleting Post", 403));
+    if (!post) {
+      return next(new HttpError("Post not found", 404));
     }
 
+    if (post.creator.toString() !== req.user.userId) {
+      return next(new HttpError("Unauthorized to delete this post", 403));
+    }
+
+    await postModel.findByIdAndDelete(postId);
+    await UserModel.findByIdAndUpdate(req.user.userId, { $inc: { posts: -1 } });
+
+    res.json(`Post ${postId} deleted Successfully`);
   } catch (error) {
     console.error('Error in deletePost:', error);
-    return next(new HttpError("Issue while trying to delete the Post", 404));
+    return next(new HttpError("Issue while trying to delete the Post", 500));
   }
 };
+
 
 
 export {

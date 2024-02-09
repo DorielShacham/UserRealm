@@ -43,10 +43,6 @@ export const Postdetail = () => {
     return <Loader />;
   }
 
-  const imgUrl = post?.thumbnail
-    ? `${process.env.REACT_APP_ASSETS_URL}/API/${post.thumbnail}`
-    : "";
-
   return (
     <section className="post-detail">
       {error && <p className="error">{error}</p>}

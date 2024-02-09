@@ -1,10 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { UserContext } from '../../contex/userContext';
 import axios from 'axios';
 import Loader from '../../components/loader/Loader';
-import './deletepost.css';
-import { useState } from 'react';
 
 interface DeletepostProps {
   postId: any;
@@ -35,18 +33,17 @@ export const Deletepost: React.FC<DeletepostProps> = ({ postId }: DeletepostProp
       setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   };
-
+  if(isLoading){
+    return <Loader />;
+  }
   useEffect(() => {
     if (!token) {
       navigate('/login');
     }
   }, []);
-
-  if(isLoading){
-    <Loader />
-  }
 
   return (
     <button className="btn sm danger" onClick={removePost}>
