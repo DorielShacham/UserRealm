@@ -68,7 +68,7 @@ export const Postdetail = () => {
           </div>
           <h1>{post.title}</h1>
           <div className="post-detail__thumbnail">
-            <img src={imgUrl} alt="Blog Picture" />
+            <img src={post?.thumbnail} alt="Blog Picture" />
           </div>
 
           <p dangerouslySetInnerHTML={{ __html: post.description }}></p>
