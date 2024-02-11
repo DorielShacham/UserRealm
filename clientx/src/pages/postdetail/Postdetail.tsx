@@ -39,7 +39,13 @@ export const Postdetail = () => {
       setIsLoading(false);
     };
     getPost();
-  }, []);
+  }, [id]);
+
+
+  const handleLikeChange = (newLikesCount: number, newIsLiked: boolean) => {
+    setLikesCount(newLikesCount);
+    setIsLiked(newIsLiked);
+  };
 
   useEffect(() => {}, [currentUser, post]);
 
