@@ -1,9 +1,6 @@
 import postModel from "../models/postModel";
 import UserModel from "../models/userModel";
 import { HttpError } from "../models/errorModel";
-import fs from "fs";
-import path from "path";
-import { v4 as uuid } from "uuid";
 import { Types } from 'mongoose';
 
 // Like a Post POST (protected) - /api/posts/:postId/like
