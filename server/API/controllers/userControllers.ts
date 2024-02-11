@@ -125,10 +125,6 @@ const changeAvatar = async (req, res, next) => {
       console.error("User not found for ID:", req.user.id);
       return next(new HttpError("User not found", 404));
     }
-
-    if (user.avatar) {
-      console.log("new avatar created")
-    }
     const newAvatar = req.body.avatar;
 
     if (Buffer.byteLength(newAvatar, 'base64') > 500000) {
