@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { createPost, getPosts, getLimitedPosts, getPost, getCatPosts, getUserPosts, editPost, deletePost, likePost } from '../controllers/postControllers';
 import { authMiddleware } from "../middleware/authMiddleware";
-import { protect } from "../middleware/likesMiddleware"
 
 const router = Router();
 
