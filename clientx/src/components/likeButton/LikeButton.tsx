@@ -8,8 +8,8 @@ interface LikeButtonProps {
 }
 
 const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser }) => {
-  const [likeCount, setLikeCount] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState(0);
 
   useEffect(() => {
     const fetchLikes = async () => {
@@ -18,7 +18,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser }) => {
           `${process.env.REACT_APP_BASE_URL}/posts/${postId}/likes`,
           { headers: { Authorization: `Bearer ${currentUser?.token}` } }
         );
-        setLikeCount(response.data.likes.length);
+        setLikesCount(response.data.likes.length);
         setIsLiked(response.data.likes.includes(currentUser?.userId));
       } catch (error) {
         console.error('Error fetching likes:', error);
@@ -37,21 +37,23 @@ const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser }) => {
         {},
         { headers: { Authorization: `Bearer ${currentUser?.token}` } }
       );
-      setLikeCount((prevCount) => prevCount + 1);
       setIsLiked(true);
+      setLikesCount(prevCount => prevCount + 1);
     } catch (error) {
       console.error('Error liking post:', error);
     }
   };
 
+
   return (
-    <div className="like-button-container">
+    <div>
       <button className='btn sm like' onClick={handleLikeClick} disabled={isLiked}>
         {isLiked ? <AiFillLike /> : <AiOutlineLike />}
       </button>
-      <span className="like-count">{likeCount}</span>
+      <span>{likesCount}</span>
     </div>
   );
 };
+
 
 export default LikeButton;

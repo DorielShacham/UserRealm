@@ -3,6 +3,26 @@ import UserModel from "../models/userModel";
 import { HttpError } from "../models/errorModel";
 import { Types } from 'mongoose';
 
+
+// Controller function to get post details
+const getLikesDetails = async (req, res, next) => {
+  try {
+    const postId = req.params.postId;
+    const userId = req.user.userId;
+
+    const post = await postModel.findById(postId).populate('likes');
+
+    const isLikedByCurrentUser = post.likes.some(user => user._id.equals(userId));
+
+    res.status(200).json({ 
+      post,
+      likesCount: post.likes.length,
+      isLikedByCurrentUser
+    });
+  } catch (error) {
+    return next(new HttpError("Error fetching post details", 500));
+  }
+};
 // Like a Post POST (protected) - /api/posts/:postId/like
 const likePost = async (req, res, next) => {
   try {
@@ -178,6 +198,7 @@ const deletePost = async (req, res, next) => {
 
 
 export {
+  getLikesDetails,
   likePost,
   createPost,
   getPosts,
