@@ -8,25 +8,25 @@ interface LikeButtonProps {
 }
 
 const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser }) => {
-  const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    const checkUserLikedPost = async () => {
+    const fetchLikes = async () => {
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_BASE_URL}/posts/${postId}/likes`,
           { headers: { Authorization: `Bearer ${currentUser?.token}` } }
         );
-        setIsLiked(response.data.liked);
-        setLikeCount(response.data.likeCount);
+        setLikeCount(response.data.likes.length);
+        setIsLiked(response.data.likes.includes(currentUser?.userId));
       } catch (error) {
-        console.error('Error checking if user liked post:', error);
+        console.error('Error fetching likes:', error);
       }
     };
-    
+
     if (currentUser) {
-      checkUserLikedPost();
+      fetchLikes();
     }
   }, [postId, currentUser]);
 
@@ -37,8 +37,8 @@ const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser }) => {
         {},
         { headers: { Authorization: `Bearer ${currentUser?.token}` } }
       );
+      setLikeCount((prevCount) => prevCount + 1);
       setIsLiked(true);
-      setLikeCount((prevCount) => prevCount + 1); 
     } catch (error) {
       console.error('Error liking post:', error);
     }
