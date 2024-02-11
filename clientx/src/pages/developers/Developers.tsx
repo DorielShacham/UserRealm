@@ -36,7 +36,7 @@ export const Developers = () => {
             return (
               <Link key={id} to={`/posts/users/${id}`} className="developer">
                 <div className="developer__avatar">
-                  <img src={`${process.env.REACT_APP_ASSETS_URL}/API/${avatar}`} alt={`Image of ${name}`} />
+                  <img src={`${avatar}`} alt={`Image of ${name}`} />
                 </div>
                 <div className="developer__info">
                   <h4>{name}</h4>
