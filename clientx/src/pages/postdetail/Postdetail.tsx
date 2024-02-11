@@ -16,8 +16,6 @@ export const Postdetail = () => {
   const [error, setError] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [developerLink, setDeveloperLink] = useState<string | null>(null);
-  const [likesCount, setLikesCount] = useState(0);
-  const [isLiked, setIsLiked] = useState(false);
 
   const { currentUser } = useContext(UserContext);
 
@@ -28,24 +26,16 @@ export const Postdetail = () => {
         const response = await axios.get(
           `${process.env.REACT_APP_BASE_URL}/posts/${id}`
         );
-        setPost(response.data.post);
-        setLikesCount(response.data.likesCount);
-        setIsLiked(response.data.isLikedByCurrentUser);
-        setDeveloperID(response.data.post.creator);
-        setDeveloperLink(response.data.post.developerLink || null);
+        setPost(response.data);
+        setDeveloperID(response.data.creator);
+        setDeveloperLink(response.data.developerLink || null);
       } catch (error) {
         setError(error);
       }
       setIsLoading(false);
     };
     getPost();
-  }, [id]);
-
-
-  const handleLikeChange = (newLikesCount: number, newIsLiked: boolean) => {
-    setLikesCount(newLikesCount);
-    setIsLiked(newIsLiked);
-  };
+  }, []);
 
   useEffect(() => {}, [currentUser, post]);
 

@@ -9,24 +9,24 @@ interface LikeButtonProps {
 
 const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser }) => {
   const [isLiked, setIsLiked] = useState(false);
-  const [likesCount, setLikesCount] = useState(0);
+  const [likeCount, setLikeCount] = useState(0);
 
   useEffect(() => {
-    const fetchLikes = async () => {
+    const checkUserLikedPost = async () => {
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_BASE_URL}/posts/${postId}/likes`,
           { headers: { Authorization: `Bearer ${currentUser?.token}` } }
         );
-        setLikesCount(response.data.likes.length);
-        setIsLiked(response.data.likes.includes(currentUser?.userId));
+        setIsLiked(response.data.liked);
+        setLikeCount(response.data.likeCount);
       } catch (error) {
-        console.error('Error fetching likes:', error);
+        console.error('Error checking if user liked post:', error);
       }
     };
-
+    
     if (currentUser) {
-      fetchLikes();
+      checkUserLikedPost();
     }
   }, [postId, currentUser]);
 
@@ -38,22 +38,20 @@ const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser }) => {
         { headers: { Authorization: `Bearer ${currentUser?.token}` } }
       );
       setIsLiked(true);
-      setLikesCount(prevCount => prevCount + 1);
+      setLikeCount((prevCount) => prevCount + 1);
     } catch (error) {
       console.error('Error liking post:', error);
     }
   };
 
-
   return (
-    <div>
+    <div className="like-button-container">
       <button className='btn sm like' onClick={handleLikeClick} disabled={isLiked}>
         {isLiked ? <AiFillLike /> : <AiOutlineLike />}
       </button>
-      <span>{likesCount}</span>
+      <span className="like-count">{likeCount}</span>
     </div>
   );
 };
-
 
 export default LikeButton;
