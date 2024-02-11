@@ -62,7 +62,6 @@ const loginUser = async (req, res, next) => {
     const newEmail = email.toLowerCase();
     
     const user = await UserModel.findOne({ email: { $regex: new RegExp(newEmail, 'i') } });
-    // const user = await UserModel.findOne({ email: newEmail });
     
     if (!user) {
       return next(
@@ -127,21 +126,15 @@ const changeAvatar = async (req, res, next) => {
       return next(new HttpError("User not found", 404));
     }
 
-    // Check if the user already has an avatar
     if (user.avatar) {
-      // No need to delete previous avatar as it will be overwritten
       console.log("new avatar created")
     }
-
-    // Save the base64 string representation of the new avatar
     const newAvatar = req.body.avatar;
 
-    // Check file size (optional)
     if (Buffer.byteLength(newAvatar, 'base64') > 500000) {
       return next(new HttpError("Picture size too big, should be less than 500kb", 422));
     }
 
-    // Update the user document with the new avatar
     const updatedUser = await UserModel.findByIdAndUpdate(
       req.user.userId,
       { avatar: newAvatar },
@@ -159,7 +152,6 @@ const changeAvatar = async (req, res, next) => {
   }
 };
 
-
 // edit user profile (protected) - /api/users/edit-user
 const editUser = async (req, res, next) => {
   try {
@@ -171,21 +163,18 @@ const editUser = async (req, res, next) => {
       return next(new HttpError("Please fill all fields", 422));
     }
 
-    // get user from DB based on the user ID from the token
     const user = await UserModel.findById(req.user.userId);
 
     if (!user) {
       return next(new HttpError("User was not found", 403));
     }
 
-    // get email from the user id
     const emailExist = await UserModel.findOne({ email });
 
     if (emailExist && emailExist._id.toString() !== req.user.userId) {
       return next(new HttpError("Incorrect Email", 422));
     }
 
-    // compare password to db password
     const validateUserPassword = await bcrypt.compare(
       currentPassword,
       user.password
@@ -195,16 +184,12 @@ const editUser = async (req, res, next) => {
       return next(new HttpError("Invalid current password", 422));
     }
 
-    // compare passwords
     if (newPassword !== confirmNewPassword) {
       return next(new HttpError("Passwords do not match.", 422));
     }
-
-    // hash new password
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(newPassword, salt);
 
-    // update user info in the db
     const newInfo = await UserModel.findByIdAndUpdate(
       req.user.userId,
       { name, email, password: hash },

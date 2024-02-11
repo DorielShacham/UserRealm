@@ -22,7 +22,6 @@ export const Dashboard = () => {
   const navigate = useNavigate();
   const token = currentUser?.token;
 
-  // Redirect to login page for offline users
   useEffect(() => {
     if (!token) {
       navigate("/login");

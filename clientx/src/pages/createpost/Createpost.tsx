@@ -121,7 +121,6 @@ export const Createpost = () => {
   const handleThumbnailChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      console.log(file)
       const base64 = await convertIntoBit64(file)
       setThumbnail(base64)
     }
