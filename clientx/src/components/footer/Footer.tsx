@@ -36,7 +36,7 @@ export const Footer = () => {
         <li><Link to='/posts/categories/Uncategorized'>Uncategorized</Link></li>
       </ul>
       <div className="footer__copyright">
-        <small>All rights Reserved &copy; Copyright, World of Workcraft</small>
+        <small>All rights Reserved &copy; Copyright, UserRealm</small>
       </div>
     </footer>
   )
