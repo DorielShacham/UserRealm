@@ -38,6 +38,7 @@ export const Editpost = () => {
         setDescription(response.data.description);
         setDeveloperLink(response.data.developerLink || "");
         setCategory(response.data.category || "Uncategorized");
+        setThumbnail(response.data.thumbnail || ""); 
       } catch (error) {
         console.error(error);
       }
@@ -203,7 +204,7 @@ export const Editpost = () => {
               onChange={handleThumbnailChange}
               accept="image/png, image/jpeg"
             />
-            <img className="uploadedImage" src={thumbnail} alt="Make sure the file is jpeg or png file and under 2MB" />
+            <img className="uploadedImage" src={thumbnail} alt="Make sure the file is jpeg or png and under 2MB" />
           </label>
           <input
             type="text"

@@ -131,10 +131,9 @@ const editPost = async (req, res, next) => {
     let { title, category, description, developerLink, thumbnail } = req.body;
 
     if (!title || !category || description.length < 12 || !thumbnail) {
-      return next(new HttpError("Please fill in all required fields", 400));
+      return next(new HttpError("Please fill in all required fields, *Title *Category *Description *Image.", 400));
     }
 
-    // Update post with the new thumbnail
     updatedPost = await postModel.findByIdAndUpdate(
       postId,
       { title, category, description, thumbnail, developerLink },
