@@ -53,9 +53,8 @@ export const Posts = () => {
             `${process.env.REACT_APP_BASE_URL}/posts/limited`
           );
         }
-
         setPosts(response?.data || []);
-        setTotalPosts(response?.data.length || 0);
+        setVisiblePosts((prev) => prev + 3);
       } catch (error) {
         console.log(error);
         setPosts([]);
