@@ -46,7 +46,6 @@ export const Posts = () => {
       setIsLoading(true);
       try {
         let response;
-
         if (process.env.NODE_ENV === "development") {
           await delay(500);
           response = dummy_post as any;
