@@ -15,7 +15,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser }) => {
     const checkUserLikedPost = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/posts/${postId}/like`,
+          `${process.env.REACT_APP_BASE_URL}/posts/${postId}`,
           { headers: { Authorization: `Bearer ${currentUser?.token}` } }
         );
         setIsLiked(response.data.liked);
