@@ -13,7 +13,7 @@ router.get('/categories/:category', getCatPosts);
 router.get('/users/:id', getUserPosts);
 router.patch('/:id', authMiddleware , editPost);
 router.delete('/:id',authMiddleware , deletePost);
-router.get('/:postId', getLikesDetails);
+router.get('/posts/:postId', getLikesDetails);
 router.post('/:postId/like',authMiddleware , likePost); 
     
 
