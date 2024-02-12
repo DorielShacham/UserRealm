@@ -19,6 +19,10 @@
     align-items: center;
 }
 
+.post-detail__header > *:nth-child(3){
+    
+}
+
 .post-detail__thumbnail {
     margin: 1rem 0;
     height: fit-content;

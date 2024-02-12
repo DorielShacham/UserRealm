@@ -29,7 +29,6 @@ const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser }) => {
         }
         setIsLiked(response.data.isLiked);
         setLikeCount(response.data.likes.length);
-        console.log(response);
       } catch (error) {
         console.error("Error checking if user liked post:", error);
       }
