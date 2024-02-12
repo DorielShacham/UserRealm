@@ -111,8 +111,10 @@
 .post__title {
   transition: 0.3s;
 }
-.post__title:hover {
+
+.post:hover .post__title {
   width: 100%;
+  color: white;
   background: var(--color-primary);
 }
 
@@ -169,6 +171,11 @@
   display: flex;
   gap: 1rem;
   align-items: flex-start;
+}
+
+.post:hover .post-author,
+.post:hover .post__author-details > h5 {
+  color: white;
 }
 
 .post__author-avatar {
