@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './likeButton.css'
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import axios from "axios";
 import dummy_response from '../../dummy_data/like_response.json'

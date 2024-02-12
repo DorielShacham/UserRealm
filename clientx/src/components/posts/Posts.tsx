@@ -27,13 +27,12 @@ export const Posts = () => {
   const loadMorePosts = async () => {
     const newVisiblePosts = visiblePosts + 3;
     setLoadingMore(true);
-
     try {
       const response = await axios.get<Post[]>(
         `${process.env.REACT_APP_BASE_URL}/posts/limited?limit=${newVisiblePosts}`
       );
-      setPosts(response?.data || []);
-      setVisiblePosts((prev) => prev + 3);
+      setPosts(response?.data.slice(visiblePosts, newVisiblePosts) || []);
+      setVisiblePosts(newVisiblePosts);
     } catch (error) {
       console.log("API Error:", error);
     } finally {
