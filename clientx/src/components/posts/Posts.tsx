@@ -31,7 +31,7 @@ export const Posts = () => {
       const response = await axios.get<Post[]>(
         `${process.env.REACT_APP_BASE_URL}/posts/limited?limit=${newVisiblePosts}`
       );
-      setPosts((prevPosts) => [...prevPosts, ...response.data.slice(visiblePosts)]);
+      setPosts(response?.data || []);
       setVisiblePosts(newVisiblePosts);
     } catch (error) {
       console.log("API Error:", error);
@@ -40,7 +40,7 @@ export const Posts = () => {
     }
   };
   
-
+  
   useEffect(() => {
     const fetchPosts = async () => {
       setIsLoading(true);
