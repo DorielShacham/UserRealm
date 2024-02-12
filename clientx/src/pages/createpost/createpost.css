@@ -5,11 +5,11 @@ body {
 }
 
 input {
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
 }
 
 select {
-  margin-bottom: 10px;
+  margin-bottom: 10rem;
 }
 .ql-editor {
   background: var(--color-white);
@@ -54,5 +54,8 @@ select {
     height: 5rem;
     padding: 1rem;
     border-radius: 2rem;
+  }
+  select {
+    margin-bottom: 30rem;
   }
 }

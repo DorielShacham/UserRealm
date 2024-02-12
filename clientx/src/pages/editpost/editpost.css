@@ -1,5 +1,13 @@
 @import "../../index.css";
 
+input {
+  margin-bottom: 0.5rem;
+}
+section{
+  margin-bottom: 10rem;
+}
+
+
 .file-input-label {
   height: 10rem;
   position: relative;
@@ -36,5 +44,8 @@
     height: 5rem;
     padding: 1rem;
     border-radius: 2rem;
+  }
+  select {
+    margin-bottom: 30rem;
   }
 }
