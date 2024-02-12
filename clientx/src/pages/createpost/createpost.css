@@ -9,7 +9,7 @@ input {
 }
 
 select {
-  margin-bottom: 10rem;
+  margin-bottom: 1rem;
 }
 .ql-editor {
   background: var(--color-white);
