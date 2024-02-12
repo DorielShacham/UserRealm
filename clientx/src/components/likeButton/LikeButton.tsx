@@ -8,9 +8,10 @@ import { delay } from '../../modules/setTimeout';
 interface LikeButtonProps {
   postId: string;
   currentUser: any;
+  className?: string;
 }
 
-const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser }) => {
+const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser, className }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
 
@@ -53,15 +54,15 @@ const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser }) => {
   };
 
   return (
-    <div className="like-button-container">
+    <div className={`like-button-container ${className}`}>
       <button
-        className="btn sm like"
+        className={`btn sm like ${className}`}
         onClick={handleLikeClick}
         disabled={isLiked}
       >
         {isLiked ? <AiFillLike /> : <AiOutlineLike />}
       </button>
-      <span className="like-count">{likeCount}</span>
+      <span className={`like-count ${className}`}>{likeCount}</span>
     </div>
   );
 };

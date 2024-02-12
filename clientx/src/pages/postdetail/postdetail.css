@@ -10,7 +10,12 @@
 .post-detail__header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 1.5rem;
+}
+
+.post-detail__like-button {
+    margin-left: auto;
 }
 
 .post-detail__buttons {
@@ -20,7 +25,7 @@
 }
 
 .post-detail__header > *:nth-child(3){
-    
+
 }
 
 .post-detail__thumbnail {

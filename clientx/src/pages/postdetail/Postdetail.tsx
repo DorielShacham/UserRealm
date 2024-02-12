@@ -67,7 +67,8 @@ export const Postdetail = () => {
               </div>
             )}
             {currentUser && (
-              <LikeButton postId={id || ""} currentUser={currentUser} />
+              <LikeButton postId={id || ""} currentUser={currentUser} className="post-detail__like-button" />
+
             )}
           </div>
           <h1>{post.title}</h1>
