@@ -4,7 +4,7 @@ import { HttpError } from "../models/errorModel";
 import { Types } from 'mongoose';
 
 
-// Controller function to get post details
+// Controller function to get likes details
 const getLikesDetails = async (req, res, next) => {
   try {
     const postId = req.params.postId;
