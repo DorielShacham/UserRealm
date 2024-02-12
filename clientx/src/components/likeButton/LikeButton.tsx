@@ -18,7 +18,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser }) => {
           `${process.env.REACT_APP_BASE_URL}/posts/${postId}`,
           { headers: { Authorization: `Bearer ${currentUser?.token}` } }
         );
-        setIsLiked(response.data.likes);
+        setIsLiked(response.data.isLiked);
         setLikeCount(response.data.likeCount);
         console.log(response)
       } catch (error) {
