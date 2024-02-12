@@ -207,6 +207,7 @@ export const Editpost = () => {
             <img className="uploadedImage" src={thumbnail} alt="Make sure the file is jpeg or png and under 2MB" />
           </label>
           <input
+            className="developer__link"
             type="text"
             placeholder="Project Link (optional)"
             value={developerLink || ""}

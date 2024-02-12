@@ -181,6 +181,7 @@ export const Createpost = () => {
           </label>
 
           <input
+            className="developer__link"
             type="text"
             placeholder="Project Link (optional)"
             value={developerLink}
