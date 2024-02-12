@@ -111,11 +111,13 @@
 .post__title {
   transition: 0.3s;
 }
+.post__title:hover{
+  width: 100%;
+  background: var(--color-primary);
+}
 
 .post:hover .post__title {
-  width: 100%;
   color: white;
-  background: var(--color-primary);
 }
 
 /* postitem.tsx */
@@ -175,6 +177,13 @@
 
 .post:hover .post-author,
 .post:hover .post__author-details > h5 {
+  color: white;
+}
+
+.post:hover #btnCategory{
+  background-color: #fff;
+}
+.post:hover .post__author-details > small{
   color: white;
 }
 
