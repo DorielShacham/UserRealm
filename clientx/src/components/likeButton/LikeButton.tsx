@@ -32,17 +32,17 @@ const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser }) => {
   }, [postId, currentUser]);
 
   const handleLikeClick = async () => {
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/posts/${postId}/like`,
-        {},
-        { headers: { Authorization: `Bearer ${currentUser?.token}` } }
-      );
-      setIsLiked(true);
-      setLikeCount((prevCount) => prevCount + 1);
-    } catch (error) {
-      console.error('Error liking post:', error);
-    }
+    // try {
+    //   const response = await axios.post(
+    //     `${process.env.REACT_APP_BASE_URL}/posts/${postId}/like`,
+    //     {},
+    //     { headers: { Authorization: `Bearer ${currentUser?.token}` } }
+    //   );
+    //   setIsLiked(true);
+    //   setLikeCount((prevCount) => prevCount + 1);
+    // } catch (error) {
+    //   console.error('Error liking post:', error);
+    // }
   };
 
   return (
