@@ -4,7 +4,6 @@ import { authMiddleware } from "../middleware/authMiddleware";
 
 const router = Router();
 
-
 router.post('/', authMiddleware , createPost);
 router.get('/', getPosts);
 router.get('/limited', getLimitedPosts);
@@ -16,6 +15,4 @@ router.delete('/:id',authMiddleware , deletePost);
 router.get('/posts/:postId', getLikesDetails);
 router.post('/:postId/like',authMiddleware , likePost); 
     
-
-
 export default router;

@@ -196,7 +196,6 @@ const deletePost = async (req, res, next) => {
 };
 
 
-
 export {
   getLikesDetails,
   likePost,
