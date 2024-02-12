@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { PostItem } from "./PostItem";
 import Loader from "../loader/Loader";
+import { delay } from "../../modules/setTimeout";
+import dummy_post from "../../dummy_data/post.json";
 
 export interface Post {
   _id: any;
@@ -43,9 +45,17 @@ export const Posts = () => {
     const fetchPosts = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get<Post[]>(
-          `${process.env.REACT_APP_BASE_URL}/posts/limited`
-        );
+        let response;
+
+        if (process.env.NODE_ENV === "development") {
+          await delay(500);
+          response = dummy_post as any;
+        } else {
+          response = await axios.get<Post[]>(
+            `${process.env.REACT_APP_BASE_URL}/posts/limited`
+          );
+        }
+
         setPosts(response?.data || []);
         setTotalPosts(response?.data.length || 0);
       } catch (error) {
@@ -104,7 +114,9 @@ export const Posts = () => {
         <h2 className="center">No Posts Found</h2>
       )}
       {loadingMore ? (
-        <div id="loader" className="btn category">Loading...</div>
+        <div id="loader" className="btn category">
+          Loading...
+        </div>
       ) : (
         <button onClick={loadMorePosts} id="load" className="btn category">
           Load More

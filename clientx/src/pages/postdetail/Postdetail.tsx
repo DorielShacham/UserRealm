@@ -8,6 +8,8 @@ import { Link, useParams } from "react-router-dom";
 import { Post } from "../../components/posts/Posts";
 import LikeButton from "../../components/likeButton/LikeButton";
 import axios from "axios";
+import { delay } from "../../modules/setTimeout";
+import dummy_full_post from '../../dummy_data/post_full.json'
 
 export const Postdetail = () => {
   const { id } = useParams();
@@ -23,9 +25,21 @@ export const Postdetail = () => {
     const getPost = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/posts/${id}`
-        );
+
+        let response;
+
+        if (process.env.NODE_ENV === "development") {
+          await delay(500);
+          response = dummy_full_post as any;
+        } else {
+          response = await axios.get(
+            `${process.env.REACT_APP_BASE_URL}/posts/${id}`
+          );
+        }
+
+        
+
+
         setPost(response.data);
         setDeveloperID(response.data.creator);
         setDeveloperLink(response.data.developerLink || null);
