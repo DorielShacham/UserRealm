@@ -36,10 +36,7 @@ export const Postdetail = () => {
             `${process.env.REACT_APP_BASE_URL}/posts/${id}`
           );
         }
-
         
-
-
         setPost(response.data);
         setDeveloperID(response.data.creator);
         setDeveloperLink(response.data.developerLink || null);
