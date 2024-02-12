@@ -3,7 +3,7 @@
 input {
   margin-bottom: 0.5rem;
 }
-section{
+select{
   margin-bottom: 10rem;
 }
 
@@ -46,6 +46,6 @@ section{
     border-radius: 2rem;
   }
   select {
-    margin-bottom: 30rem;
+    margin-bottom: 1rem;
   }
 }
