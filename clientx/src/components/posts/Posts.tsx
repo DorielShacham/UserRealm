@@ -23,6 +23,8 @@ export const Posts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [isloading, setIsLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<Post[]>([]);
 
   const loadMorePosts = async () => {
     const newVisiblePosts = visiblePosts + 3;
@@ -39,8 +41,36 @@ export const Posts = () => {
       setLoadingMore(false);
     }
   };
-  
-  
+
+  const searchPosts = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get<Post[]>(
+        `${process.env.REACT_APP_BASE_URL}/posts/`
+      );
+      const filteredPosts = response.data.filter(
+        (post) =>
+          post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          post.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          post.category.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setSearchResults(filteredPosts);
+    } catch (error) {
+      console.log("API Error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    searchPosts();
+  };
+
   useEffect(() => {
     const fetchPosts = async () => {
       setIsLoading(true);
@@ -80,36 +110,80 @@ export const Posts = () => {
             latest projects, websites, and apps. Inspire others and get
             inspired!
           </p>
+          <form onSubmit={handleSearchSubmit} className="search__container">
+            <input
+              type="text"
+              name="search"
+              className="search"
+              id="search"
+              value={searchQuery}
+              onChange={handleInputChange}
+            />
+            <button type="submit" className="btn search">
+              Search
+            </button>
+          </form>
         </div>
       </div>
       <h1 className="latest">Latest Projects</h1>
-      {posts.length > 0 ? (
+      {searchQuery.trim() !== "" ? (
         <div className="container posts__container">
-          {posts.map(
-            ({
-              _id: id,
-              thumbnail,
-              category,
-              title,
-              description,
-              creator,
-              createdAt,
-            }) => (
-              <PostItem
-                key={id}
-                postID={id}
-                thumbnail={thumbnail}
-                category={category}
-                title={title}
-                description={description}
-                developerID={creator}
-                createdAt={createdAt}
-              />
+          {searchResults.length > 0 ? (
+            searchResults.map(
+              ({
+                _id: id,
+                thumbnail,
+                category,
+                title,
+                description,
+                creator,
+                createdAt,
+              }) => (
+                <PostItem
+                  key={id}
+                  postID={id}
+                  thumbnail={thumbnail}
+                  category={category}
+                  title={title}
+                  description={description}
+                  developerID={creator}
+                  createdAt={createdAt}
+                />
+              )
             )
+          ) : (
+            <h2 className="center">No Posts Found</h2>
           )}
         </div>
       ) : (
-        <h2 className="center">No Posts Found</h2>
+        <div className="container posts__container">
+          {posts.length > 0 ? (
+            posts.map(
+              ({
+                _id: id,
+                thumbnail,
+                category,
+                title,
+                description,
+                creator,
+                createdAt,
+              }) => (
+                <PostItem
+                  key={id}
+                  postID={id}
+                  thumbnail={thumbnail}
+                  category={category}
+                  title={title}
+                  description={description}
+                  developerID={creator}
+                  createdAt={createdAt}
+                />
+              )
+            )
+          ) : (
+            <h2 className="center">No Posts Found</h2>
+          )}
+        </div>
       )}
       {loadingMore ? (
         <div id="loader" className="btn category">

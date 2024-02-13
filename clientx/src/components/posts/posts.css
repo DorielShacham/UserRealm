@@ -167,6 +167,9 @@
 #btnCategory {
   font-weight: bold;
 }
+#btnCategory:hover{
+  color: var(--color-primary);
+}
 
 /* postauthor.tsx */
 .post-author {
@@ -182,6 +185,7 @@
 
 .post:hover #btnCategory{
   background-color: #fff;
+  color: var(--color-primary);
 }
 .post:hover .post__author-details > small{
   color: white;
