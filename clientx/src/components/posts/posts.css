@@ -127,13 +127,15 @@
 }
 
 .search{
+  color: var(--color-gray-900);
   transition: 0.3s;
 }
 
 .search:focus{
   border: 0.1rem solid var(--color-primary);
+  color: #fff;
   background-color: var(--color-gray-900);
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: "Source Serif 4","Bitter",Times,serif;
 }
 
 /* postitem.tsx */
