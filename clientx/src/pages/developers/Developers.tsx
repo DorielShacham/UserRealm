@@ -40,7 +40,7 @@ export const Developers = () => {
                 </div>
                 <div className="developer__info">
                   <h4>{name}</h4>
-                  <p>{posts}</p>
+                  <p><strong>Contribution </strong>{posts}</p>
                 </div>
               </Link>
             );

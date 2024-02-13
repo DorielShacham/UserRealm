@@ -123,7 +123,7 @@ export const Posts = () => {
               placeholder="Search for blog post..."
               onChange={handleInputChange}
             />
-            <button type="submit" className="btn search">
+            <button type="submit" className="btn">
               Search
             </button>
           </form>
