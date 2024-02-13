@@ -110,22 +110,23 @@ export const Posts = () => {
             latest projects, websites, and apps. Inspire others and get
             inspired!
           </p>
-          <form onSubmit={handleSearchSubmit} className="search__container">
+        </div>
+      </div>
+      <h1 className="latest">Latest Projects</h1>
+      <form onSubmit={handleSearchSubmit} className="search__container">
             <input
               type="text"
               name="search"
               className="search"
               id="search"
               value={searchQuery}
+              placeholder="Search for blog post..."
               onChange={handleInputChange}
             />
             <button type="submit" className="btn search">
               Search
             </button>
           </form>
-        </div>
-      </div>
-      <h1 className="latest">Latest Projects</h1>
       {searchQuery.trim() !== "" ? (
         <div className="container posts__container">
           {searchResults.length > 0 ? (

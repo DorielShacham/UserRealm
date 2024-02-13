@@ -120,6 +120,22 @@
   color: white;
 }
 
+/*Search posts*/
+.search__container{
+  margin: 2rem;
+  padding: 2rem;
+}
+
+.search{
+  transition: 0.3s;
+}
+
+.search:focus{
+  border: 0.1rem solid var(--color-primary);
+  background-color: var(--color-gray-900);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 /* postitem.tsx */
 .post {
   background: var(--color-white);
