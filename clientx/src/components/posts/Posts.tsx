@@ -114,19 +114,19 @@ export const Posts = () => {
       </div>
       <h1 className="latest">Latest Projects</h1>
       <form onSubmit={handleSearchSubmit} className="search__container">
-            <input
-              type="text"
-              name="search"
-              className="search"
-              id="search"
-              value={searchQuery}
-              placeholder="Search for blog post..."
-              onChange={handleInputChange}
-            />
-            <button type="submit" className="btn">
-              Search
-            </button>
-          </form>
+        <input
+          type="text"
+          name="search"
+          className="search"
+          id="search"
+          value={searchQuery}
+          placeholder="Search for blog post..."
+          onChange={handleInputChange}
+        />
+        <button type="submit" className="btn">
+          Search
+        </button>
+      </form>
       {searchQuery.trim() !== "" ? (
         <div className="container posts__container">
           {searchResults.length > 0 ? (
@@ -195,6 +195,23 @@ export const Posts = () => {
           Load More
         </button>
       )}
+      <section className="how-it-works">
+        <h1 className="how-it-works__title">How it Works</h1>
+        <div className="how-it-works__steps">
+          <ul className="">
+            <li className="">Create account</li>
+            <li className="">Create Blog</li>
+            <li className="">View</li>
+            <li className="">Like</li>
+          </ul>
+        </div>
+
+        <div className="how-it-works__details">
+          <ul className="how-it-works__fulldetails">
+            <li className=""></li>
+          </ul>
+        </div>
+      </section>
     </section>
   );
 };
