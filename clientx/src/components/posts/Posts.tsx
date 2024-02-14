@@ -4,6 +4,7 @@ import { PostItem } from "./PostItem";
 import Loader from "../loader/Loader";
 import { delay } from "../../modules/setTimeout";
 import dummy_post from "../../dummy_data/post.json";
+import { How } from "../how/How";
 
 export interface Post {
   _id: any;
@@ -195,23 +196,7 @@ export const Posts = () => {
           Load More
         </button>
       )}
-      <section className="how-it-works">
-        <h1 className="how-it-works__title">How it Works</h1>
-        <div className="how-it-works__steps">
-          <ul className="">
-            <li className="">Create account</li>
-            <li className="">Create Blog</li>
-            <li className="">View</li>
-            <li className="">Like</li>
-          </ul>
-        </div>
-
-        <div className="how-it-works__details">
-          <ul className="how-it-works__fulldetails">
-            <li className=""></li>
-          </ul>
-        </div>
-      </section>
+      <How />
     </section>
   );
 };
