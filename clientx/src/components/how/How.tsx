@@ -1,37 +1,38 @@
-import { useEffect } from 'react';
-import './how.css';
+import { useEffect } from "react";
+import "./how.css";
 
 export const How = () => {
-  interface data{
-    title: string,
-    category: string,
-    description: any
+  interface data {
+    title: string;
+    category: string;
+    description: any;
   }
-  const servicesData= [
+  const servicesData = [
     {
       title: "account",
       category: "account",
       description: [
-        "I'm a versatile web developer with expertise in HTML, CSS, and TypeScript. In HTML, I structure content effectively, utilizing HTML5 for multimedia. CSS mastery enables precise styling, responsive design, and dynamic animations. TypeScript adds a layer of reliability to my coding, ensuring clean and efficient development for exceptional web projects.",
+        "Create your account by clicking the sign-up button and entering your name, email, and password.",
       ],
+      image: "path/to/blog-image.jpg",
     },
     {
       title: "blog",
       category: "blog",
       description: [
-        "I'm a dynamic developer skilled in both front-end and back-end technologies. On the front end, I specialize in crafting engaging user interfaces using React. On the back end, I excel in creating robust server-side logic and APIs using technologies like Node.js. My expertise in TypeScript enhances code reliability, and my commitment to staying current ensures I deliver cutting-edge solutions.",
+        "This section showcases various projects created by our community members.",
+        "Share your latest projects, websites, and apps to inspire others and get inspired!",
       ],
+      image: "path/to/blog-image.jpg",
     },
     {
       title: "viewlike",
       category: "viewlike",
       description: [
-        "I am highly proficient in WebdriverIO, a leading test automation framework used to automate web applications." +
-          " <br> <br> " +
-          "With WebdriverIO, I harness its capabilities to create robust and automated test scripts for web applications. I can efficiently locate web elements, perform actions like clicking and typing, and validate expected behaviors, ensuring high-quality software." +
-          " <br> <br> " +
-          "I excel in utilizing WebdriverIO's advanced features such as browser management, parallel test execution, and integration with various testing frameworks. This expertise enables me to conduct comprehensive and efficient testing, ensuring software reliability and performance across different environments and platforms.",
+        "Only signed-up users can like other members' blog posts and contribute to the blog.",
+        "Join our community today to interact with other developers and share your thoughts!",
       ],
+      image: "path/to/blog-image.jpg",
     },
   ];
 
@@ -47,7 +48,6 @@ export const How = () => {
       const details: any = servicesData.find(
         (item: { category: any }) => item.category === category
       );
-      console.log(details);
       serviceDetails.innerHTML = `
     <h3>${details.title}</h3>
     ${details.description
@@ -74,13 +74,12 @@ export const How = () => {
     getService("account");
   }, []);
 
-
   return (
     <section className="services" id="services">
       <h1>How it Works</h1>
       <p>
-        Create your account then create A blog post, edit your blog post if
-        needed <br />
+        Join the community today by signing up, by signing up you can create
+        edit & like other memebers blog posts <br />
         and view other developer blogs to be inspired by the creations of
         others.
       </p>
