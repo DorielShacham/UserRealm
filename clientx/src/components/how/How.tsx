@@ -1,7 +1,13 @@
+import { useEffect } from 'react';
 import './how.css';
 
 export const How = () => {
-  const servicesData: any = [
+  interface data{
+    title: string,
+    category: string,
+    description: any
+  }
+  const servicesData= [
     {
       title: "account",
       category: "account",
@@ -28,43 +34,46 @@ export const How = () => {
       ],
     },
   ];
-  
-  const serviceBtns = document.querySelectorAll(
-    ".service__item"
-  ) as NodeListOf<HTMLButtonElement>;
-  const serviceDetails = document.querySelector(
-    ".services__right"
-  ) as HTMLElement;
-  
-  const getService = (category: string) => {
-    const details = servicesData.find(
-      (item: { category: any }) => item.category === category
-    );
-    console.log(details);
-    serviceDetails.innerHTML = `
-  <h3>${details.title}</h3>
-  ${details.description
-    .map((paragraph: string) => "<p>" + paragraph + "</p>")
-    .join("")}`;
-  };
-  
-  const removeActiveClass = () => {
-    serviceBtns.forEach((activeClass) => {
-      activeClass.classList.remove("active");
+
+  useEffect(() => {
+    const serviceBtns = document.querySelectorAll(
+      ".service__item"
+    ) as NodeListOf<HTMLButtonElement>;
+    const serviceDetails = document.querySelector(
+      ".services__right"
+    ) as HTMLElement;
+
+    const getService = (category: string) => {
+      const details: any = servicesData.find(
+        (item: { category: any }) => item.category === category
+      );
+      console.log(details);
+      serviceDetails.innerHTML = `
+    <h3>${details.title}</h3>
+    ${details.description
+      .map((paragraph: string) => "<p>" + paragraph + "</p>")
+      .join("")}`;
+    };
+
+    const removeActiveClass = () => {
+      serviceBtns.forEach((activeClass) => {
+        activeClass.classList.remove("active");
+      });
+    };
+
+    serviceBtns.forEach((item) => {
+      item.addEventListener("click", () => {
+        removeActiveClass();
+        const serviceClass = item.classList[1];
+        console.log(serviceClass);
+        getService(serviceClass);
+        item.classList.add("active");
+      });
     });
-  };
-  
-  serviceBtns.forEach((item) => {
-    item.addEventListener("click", () => {
-      removeActiveClass();
-      const serviceClass = item.classList[1];
-      console.log(serviceClass);
-      getService(serviceClass);
-      item.classList.add("active");
-    });
-  });
-  
-  getService("account");
+
+    getService("account");
+  }, []);
+
 
   return (
     <section className="services" id="services">
