@@ -35,10 +35,9 @@ footer{
     color: var(--color-white);
     font-weight: 300;
 }
-
-
+/* 
 @media screen and (max-width: 800px){
     .footer__categories{
         flex-direction: column;
     }
-}
+} */
