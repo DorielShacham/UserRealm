@@ -24,6 +24,10 @@
   margin-top: 4rem;
 }
 
+hr{
+    border: 0.2rem solid #fff;
+}
+
 .services__left {
   display: flex;
   flex-direction: column;
@@ -42,16 +46,16 @@
   transition: 0.3s;
 }
 
-li.service__item.account:focus {
+li.service__item.account:active {
   border-right: 0.2rem solid lime;
   margin-right: 0.5rem;
 }
 
-li.service__item.blog:focus {
+li.service__item.blog:active {
   border-right: 0.2rem solid lime;
   margin-right: 0.5rem;
 }
-li.service__item.viewlike:focus {
+li.service__item.viewlike:active {
   border-right: 0.2rem solid lime;
   margin-right: 0.5rem;
 }

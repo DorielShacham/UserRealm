@@ -82,6 +82,7 @@ export const How = () => {
         you can create, edit & like other memebers blog posts <br />
         and view other developer blogs to be inspired by the projects of others.
       </p>
+      <hr></hr>
       <div className="container services__container">
         <ul className="services__left">
           <li className="service__item account active">
