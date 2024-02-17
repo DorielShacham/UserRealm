@@ -1,4 +1,6 @@
 #services{
+    background-color: var(--color-gray-900);
+    color: #fff;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -38,16 +40,16 @@
     transition: 0.3s;
 }
 
-li.service__item.account.active:focus{
+li.service__item.account:active{
     border-right: 0.2rem solid lime;
     margin-right: 0.5rem;
 }
 
-li.service__item.blog.active:focus{
+li.service__item.blog:active{
     border-right: 0.2rem solid lime;
     margin-right: 0.5rem;
 }
-li.service__item.viewlike.active:focus{
+li.service__item.viewlike:active{
     border-right: 0.2rem solid lime;
     margin-right: 0.5rem;
 }

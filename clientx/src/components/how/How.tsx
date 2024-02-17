@@ -9,7 +9,7 @@ export const How = () => {
   }
   const servicesData = [
     {
-      title: "account",
+      title: "account creation",
       category: "account",
       description: [
         "Create your account by clicking the Register button and entering your name, email, and password.",
@@ -17,7 +17,7 @@ export const How = () => {
       image: "../../images/register.jpg",
     },
     {
-      title: "blog",
+      title: "blog creation",
       category: "blog",
       description: [
         "This section showcases various projects created by our community members.",
@@ -26,7 +26,7 @@ export const How = () => {
       image: "../../images/createblog.jpg",
     },
     {
-      title: "viewlike",
+      title: "view&like",
       category: "viewlike",
       description: [
         "Only signed-up users can like other members' blog posts and contribute to the blog.",
