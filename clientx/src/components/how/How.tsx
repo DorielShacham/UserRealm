@@ -1,15 +1,11 @@
 import { useEffect } from "react";
+import "./how.css";
+
 import registerImage from "../../images/register.jpg";
 import createBlogImage from "../../images/createblog.jpg";
 import viewAndLikeImage from "../../images/viewandlike.jpg";
-import "./how.css";
 
 export const How = () => {
-  interface data {
-    title: string;
-    category: string;
-    description: any;
-  }
   const servicesData = [
     {
       title: "account creation",
@@ -29,7 +25,7 @@ export const How = () => {
       image: createBlogImage,
     },
     {
-      title: "view&like",
+      title: "view & like",
       category: "viewlike",
       description: [
         "Only signed-up users can like other members' blog posts and contribute to the blog.",
@@ -53,6 +49,7 @@ export const How = () => {
       );
       serviceDetails.innerHTML = `
     <h3>${details.title}</h3>
+    <img src="${details.image}" alt="${details.title}" />
     ${details.description
       .map((paragraph: string) => "<p>" + paragraph + "</p>")
       .join("")}`;
@@ -82,10 +79,10 @@ export const How = () => {
       <h1>How it Works</h1>
       <p>
         Join the community today by signing up, by signing up <br />
-        you can create, edit & like other memebers blog posts <br />
+        you can create, edit & like other members' blog posts <br />
         and view other developer blogs to be inspired by the projects of others.
       </p>
-      <hr></hr>
+      <hr />
       <div className="container services__container">
         <ul className="services__left">
           <li className="service__item account active">
@@ -114,19 +111,8 @@ export const How = () => {
           </li>
         </ul>
 
-        <article
-          className="services__right"
-        >
-          {/* <h3>Title</h3>
-            <p>
-                Paragraph
-            </p>
-            <p>
-                Paragraph
-            </p>
-            <p>
-                Paragraph
-            </p> --> */}
+        <article className="services__right">
+          {/* Content will be dynamically generated here */}
         </article>
       </div>
     </section>
