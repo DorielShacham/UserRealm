@@ -1,4 +1,7 @@
 import { useEffect } from "react";
+import registerImage from "../../images/register.jpg";
+import createBlogImage from "../../images/createblog.jpg";
+import viewAndLikeImage from "../../images/viewandlike.jpg";
 import "./how.css";
 
 export const How = () => {
@@ -14,7 +17,7 @@ export const How = () => {
       description: [
         "Create your account by clicking the Register button and entering your name, email, and password.",
       ],
-      image: "../../images/register.jpg",
+      image: registerImage,
     },
     {
       title: "blog creation",
@@ -23,7 +26,7 @@ export const How = () => {
         "This section showcases various projects created by our community members.",
         "Share your latest projects, websites, and apps to inspire others and get inspired!",
       ],
-      image: "../../images/createblog.jpg",
+      image: createBlogImage,
     },
     {
       title: "view&like",
@@ -32,7 +35,7 @@ export const How = () => {
         "Only signed-up users can like other members' blog posts and contribute to the blog.",
         "Join our community today to interact with other developers and share your thoughts!",
       ],
-      image: "../../images/viewandlike.jpg",
+      image: viewAndLikeImage,
     },
   ];
 
@@ -113,8 +116,6 @@ export const How = () => {
 
         <article
           className="services__right"
-          data-aos="fade-in"
-          data-aos-delay="200"
         >
           {/* <h3>Title</h3>
             <p>
