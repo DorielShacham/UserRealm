@@ -49,7 +49,7 @@ export const How = () => {
       );
       serviceDetails.innerHTML = `
     <h3>${details.title}</h3>
-    <img src="${details.image}" alt="${details.title}" />
+    <img class="howImage" src="${details.image}" alt="${details.title}" />
     ${details.description
       .map((paragraph: string) => "<p>" + paragraph + "</p>")
       .join("")}`;
