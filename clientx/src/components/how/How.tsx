@@ -12,9 +12,9 @@ export const How = () => {
       title: "account",
       category: "account",
       description: [
-        "Create your account by clicking the sign-up button and entering your name, email, and password.",
+        "Create your account by clicking the Register button and entering your name, email, and password.",
       ],
-      image: "path/to/blog-image.jpg",
+      image: "../../images/register.jpg",
     },
     {
       title: "blog",
@@ -23,7 +23,7 @@ export const How = () => {
         "This section showcases various projects created by our community members.",
         "Share your latest projects, websites, and apps to inspire others and get inspired!",
       ],
-      image: "path/to/blog-image.jpg",
+      image: "../../images/createblog.jpg",
     },
     {
       title: "viewlike",
@@ -32,7 +32,7 @@ export const How = () => {
         "Only signed-up users can like other members' blog posts and contribute to the blog.",
         "Join our community today to interact with other developers and share your thoughts!",
       ],
-      image: "path/to/blog-image.jpg",
+      image: "../../images/viewandlike.jpg",
     },
   ];
 
@@ -78,16 +78,15 @@ export const How = () => {
     <section className="services" id="services">
       <h1>How it Works</h1>
       <p>
-        Join the community today by signing up, by signing up you can create
-        edit & like other memebers blog posts <br />
-        and view other developer blogs to be inspired by the creations of
-        others.
+        Join the community today by signing up, by signing up <br />
+        you can create, edit & like other memebers blog posts <br />
+        and view other developer blogs to be inspired by the projects of others.
       </p>
       <div className="container services__container">
         <ul className="services__left">
           <li className="service__item account active">
             <span>
-              <i className="fas fa-laptop"></i>
+              <i className="fa fa-id-badge" aria-hidden="true"></i>
             </span>
             <div>
               <h3>Create account</h3>
@@ -95,7 +94,7 @@ export const How = () => {
           </li>
           <li className="service__item blog">
             <span>
-              <i className="fas fa-database"></i>
+              <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
             </span>
             <div>
               <h3>Create your blog</h3>
@@ -103,7 +102,7 @@ export const How = () => {
           </li>
           <li className="service__item viewlike">
             <span>
-              <i className="fas fa-robot"></i>
+              <i className="fa fa-thumbs-o-up" aria-hidden="true"></i>
             </span>
             <div>
               <h3>View & Like</h3>
@@ -116,15 +115,15 @@ export const How = () => {
           data-aos="fade-in"
           data-aos-delay="200"
         >
-          {/* <!-- <h3>HTML CSS</h3>
+          {/* <h3>Title</h3>
             <p>
-                I possess strong expertise in HTML (Hypertext Markup Language) and CSS (Cascading Style Sheets), foundational skills in web development.
+                Paragraph
             </p>
             <p>
-                With HTML, I skillfully utilize various tags to structure web content. These include tags for headings, paragraphs, lists, and tables. I also leverage HTML5's capabilities for embedding multimedia elements, which enhances both the aesthetics and accessibility of web pages.
+                Paragraph
             </p>
             <p>
-                In CSS, I'm adept at using selectors to precisely target HTML elements for styling. This includes applying fonts, colors, spacing, and responsive design. My proficiency in CSS3 enables me to implement animations and transitions for dynamic web experiences, ensuring consistent and polished appearances across different devices and browsers.
+                Paragraph
             </p> --> */}
         </article>
       </div>
