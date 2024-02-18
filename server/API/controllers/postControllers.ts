@@ -31,7 +31,6 @@ const likePost = async (req, res, next) => {
 
     const post = await postModel.findById(postId);
     if (post.likes.includes(userId)) {
-      alert("Post already Liked.")
       return next(new HttpError("User has already liked this post", 400));
     }
 
