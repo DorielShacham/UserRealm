@@ -59,21 +59,7 @@ hr {
   transform: translate3d(0px, -16px, 0px) rotateX(0deg) rotateZ(0deg);
   box-shadow: 1px 0.5rem 0 0.2rem #f9f9fb, -1px 0 28px 0 rgba(34, 33, 81, 0.01),
   0.2rem 0.1rem 0.5rem -5px white;
-  animation: updown 1s infinite;
-  animation-timing-function: ease-in-out;
 }
-
-@keyframes updown {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-8px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
 
 li.service__item.account:hover {
   border-right: 0.2rem solid lime;
