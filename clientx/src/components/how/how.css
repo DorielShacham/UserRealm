@@ -21,7 +21,8 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 6rem;
-  margin-top: 4rem;
+  margin-top: 1rem;
+  margin-bottom: 5rem;
 }
 
 hr {
