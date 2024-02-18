@@ -62,24 +62,20 @@ hr {
   0.2rem 0.1rem 0.5rem -5px white;
 }
 
-li.service__item.account:active {
+li.service__item.account:hover {
   border-right: 0.2rem solid lime;
   margin-right: 0.5rem;
 }
 
-li.service__item.blog:active {
+li.service__item.blog:hover {
   border-right: 0.2rem solid lime;
   margin-right: 0.5rem;
 }
-li.service__item.viewlike:active {
+li.service__item.viewlike:hover {
   border-right: 0.2rem solid lime;
   margin-right: 0.5rem;
 }
 
-.services__left li:hover,
-.services__left li.active {
-  background: var(--color-gray-200);
-}
 
 .services__left li span {
   background: var(--color-primary);
