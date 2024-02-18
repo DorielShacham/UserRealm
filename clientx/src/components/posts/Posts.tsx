@@ -111,6 +111,7 @@ export const Posts = () => {
             latest projects, websites, and apps. Inspire others and get
             inspired!
           </p>
+          <How />
         </div>
       </div>
       <h1 className="latest">Latest Projects</h1>
@@ -196,7 +197,6 @@ export const Posts = () => {
           Load More
         </button>
       )}
-      <How />
     </section>
   );
 };
