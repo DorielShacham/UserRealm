@@ -12,9 +12,9 @@ const About = () => {
   return (
     <div className="about">
       <section className="about__section">
-        <h2>Welcome to UserRealm</h2>
+        <h2>Welcome to Hotthorn</h2>
         <p>
-        UserRealm is a platform dedicated to developers and tech enthusiasts. It provides a space for showcasing creative work, projects, and sharing the journey of building them.
+        Hotthorn is a platform dedicated to developers and tech enthusiasts. It provides a space for showcasing creative work, projects, and sharing the journey of building them.
         </p>
       </section>
 
@@ -40,14 +40,14 @@ const About = () => {
       <section className="about__section">
         <h2>Our Mission</h2>
         <p>
-          Our mission is to offer developers a stage to present their work, along with insights into the challenges, triumphs, and stories behind their projects. UserRealm focuses on providing a supportive community for tech individuals to connect and learn from each other.
+          Our mission is to offer developers a stage to present their work, along with insights into the challenges, triumphs, and stories behind their projects. Hotthorn focuses on providing a supportive community for tech individuals to connect and learn from each other.
         </p>
       </section>
 
       <section className="about__section">
         <h2>Key Features</h2>
         <ul>
-          <li>Webscraping Capabilities: UserRealm uniquely incorporates webscraping to showcase developers' websites before entering the website of the developer.</li>
+          <li>Webscraping Capabilities: Hotthorn uniquely incorporates webscraping to showcase developers' websites before entering the website of the developer.</li>
           <li>Showcase Your Work: Share your creative projects, highlight the pros and cons, and narrate the journey of building them.</li>
           <li>Community Hub: Connect with other developers, learn from their experiences, and foster a community that appreciates technology and creativity.</li>
         </ul>

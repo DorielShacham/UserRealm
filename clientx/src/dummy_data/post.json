@@ -47,7 +47,7 @@
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWM2MmNhMmY2ZTZmOGU4NTcwZmZmZTkiLCJ1c2VyTmFtZSI6IkRvcmllbCBTaGFjaGFtIiwiaWF0IjoxNzA3NzQyMTcxLCJleHAiOjE3MDc4Mjg1NzF9.Jn_FUgdihDZDBf8o88nliFw4HsO58XPcUW5tY7o0tj0"
         },
         "method": "get",
-        "url": "https://userrealm-server.onrender.com/api/posts/65ca204d89c5a249d9edda54"
+        "url": "https://hotthorn-server.onrender.com/api/posts/65ca204d89c5a249d9edda54"
     },
     "request": {}
 }

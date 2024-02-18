@@ -104,7 +104,7 @@ export const Posts = () => {
     <section className="posts">
       <div className="hero__box">
         <div className="subHero__box">
-          <h1>UserRealm</h1>
+          <h1>Hotthorn</h1>
           <h2>Showcasing Your Creativity</h2>
           <p>
             Connect with a community of passionate individuals. Share your
