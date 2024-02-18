@@ -51,27 +51,26 @@ hr {
   transform: rotateX(70deg) rotateZ(0deg);
   transform-style: preserve-3d;
   border-radius: 1rem;
-  box-shadow: 0rem 0.3rem 0 0rem #f9f9fb, -1px 0 28px 0 #22215103, 0.5rem 5rem 2rem 1rem #fff;
+  box-shadow: 0 0.3rem 0 0 #f9f9fb, -1px 0 28px 0 #22215103, 0rem 12rem 10rem 0.5rem #fff;
   transition: 0.4s ease-in-out transform, 0.4s ease-in-out box-shadow;
 }
 
 .howImage:hover {
   transform: translate3d(0px, -16px, 0px) rotateX(0deg) rotateZ(0deg);
-  box-shadow: 1px 0.5rem 0 0.2rem #f9f9fb, -1px 0 28px 0 rgba(34, 33, 81, 0.01),
-  0.2rem 0.1rem 0.5rem -5px white;
+  box-shadow: 0 0.3rem 0 0 #f9f9fb, -1px 0 28px 0 rgba(34, 33, 81, 0.01), 0rem 0.1rem 0.5rem -0.5rem #fff;
 }
 
 li.service__item.account:hover {
-  border-right: 0.2rem solid lime;
+  border-right: 0.2rem solid var(--color-primary);
   margin-right: 0.5rem;
 }
 
 li.service__item.blog:hover {
-  border-right: 0.2rem solid lime;
+  border-right: 0.2rem solid var(--color-primary);
   margin-right: 0.5rem;
 }
 li.service__item.viewlike:hover {
-  border-right: 0.2rem solid lime;
+  border-right: 0.2rem solid var(--color-primary);
   margin-right: 0.5rem;
 }
 
