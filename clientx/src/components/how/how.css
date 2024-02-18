@@ -51,16 +51,29 @@ hr {
   transform: rotateX(70deg) rotateZ(0deg);
   transform-style: preserve-3d;
   border-radius: 1rem;
-  box-shadow: 1px 1px 0 1px #f9f9fb, -1px 0 28px 0 rgba(34, 33, 81, 0.01),
-  0.1rem 0.1rem 0.5rem 0 white;
+  box-shadow: 0rem 0.5rem 0 0rem #f9f9fb, -1px 0 28px 0 #22215103, 0.5rem 5rem 2rem 1rem #fff;
   transition: 0.4s ease-in-out transform, 0.4s ease-in-out box-shadow;
+  animation: updown 1s infinite;
+  animation-timing-function: ease-in-out;
 }
 
 .howImage:hover {
   transform: translate3d(0px, -16px, 0px) rotateX(0deg) rotateZ(0deg);
-  box-shadow: 1px 1px 0 0.2rem #f9f9fb, -1px 0 28px 0 rgba(34, 33, 81, 0.01),
+  box-shadow: 1px 0.5rem 0 0.2rem #f9f9fb, -1px 0 28px 0 rgba(34, 33, 81, 0.01),
   0.2rem 0.1rem 0.5rem -5px white;
 }
+
+@keyframes updown {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
 
 li.service__item.account:hover {
   border-right: 0.2rem solid lime;
