@@ -17,7 +17,7 @@ const Realm = () => {
   }, [ringColors]);
 
   useEffect(() => {
-    const startColor = '#ff3040';
+    const startColor = '#ff3c00';
     const endColor = '#0c0c22';
     const steps = 32;
 
