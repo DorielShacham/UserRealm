@@ -11,7 +11,6 @@ const getLikesDetails = async (req, res, next) => {
     const userId = req.user.userId;
 
     const post = await postModel.findById(postId).populate('likes');
-
     const isLikedByCurrentUser = post.likes.some(user => user._id.equals(userId));
 
     res.status(200).json({ 
