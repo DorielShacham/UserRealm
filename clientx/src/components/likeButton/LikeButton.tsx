@@ -39,6 +39,13 @@ const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser, className 
     }
   }, [postId, currentUser]);
 
+  useEffect(() => {
+    const storedLikeStatus = localStorage.getItem(`like_${postId}`);
+    if (storedLikeStatus !== null) {
+      setIsLiked(JSON.parse(storedLikeStatus));
+    }
+  }, [postId]);
+
   const handleLikeClick = async () => {
     try {
       const response = await axios.post(
@@ -48,6 +55,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser, className 
       );
       setIsLiked(true);
       setLikeCount((prevCount) => prevCount + 1);
+      localStorage.setItem(`like_${postId}`, JSON.stringify(true));
     } catch (error) {
       console.error('Error liking post:', error);
     }
