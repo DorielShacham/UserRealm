@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import './likeButton.css'
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import axios from "axios";
+import dummy_response from '../../dummy_data/like_response.json'
+import { delay } from '../../modules/setTimeout';
 
 interface LikeButtonProps {
   postId: string;
@@ -16,14 +18,18 @@ const LikeButton: React.FC<LikeButtonProps> = ({ postId, currentUser, className 
   useEffect(() => {
     const checkUserLikedPost = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/posts/${postId}/likes`,
-          { headers: { Authorization: `Bearer ${currentUser?.token}` } }
-        );
-        const isLikedByUser = response.data.isLikedByUser;
-        const likesCount = response.data.likesCount;
-        setIsLiked(isLikedByUser);
-        setLikeCount(likesCount);
+        let response;
+        if (process.env.NODE_ENV === "development") {
+          await delay(1000);
+          response = dummy_response;
+        } else {
+          response = await axios.get(
+            `${process.env.REACT_APP_BASE_URL}/posts/${postId}`,
+            { headers: { Authorization: `Bearer ${currentUser?.token}` } }
+          );
+        }
+        setIsLiked(response.data.isLiked);
+        setLikeCount(response.data.likes.length);
       } catch (error) {
         console.error("Error checking if user liked post:", error);
       }
