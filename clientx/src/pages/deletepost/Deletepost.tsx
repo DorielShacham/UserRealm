@@ -1,10 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { UserContext } from '../../contex/userContext';
 import axios from 'axios';
 import Loader from '../../components/loader/Loader';
 import './deletepost.css';
-import { useState } from 'react';
 
 interface DeletepostProps {
   postId: any;
@@ -16,6 +15,13 @@ export const Deletepost: React.FC<DeletepostProps> = ({ postId }: DeletepostProp
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const token = currentUser?.token;
+
+  const handleDelete = () => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this post?');
+    if (confirmDelete) {
+      removePost();
+    }
+  };
 
   const removePost = async () => {
     setIsLoading(true);
@@ -43,12 +49,12 @@ export const Deletepost: React.FC<DeletepostProps> = ({ postId }: DeletepostProp
     }
   }, []);
 
-  if(isLoading){
-    <Loader />
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (
-    <button className="btn sm danger" onClick={removePost}>
+    <button className="btn sm danger" onClick={handleDelete}>
       Delete
     </button>
   );
