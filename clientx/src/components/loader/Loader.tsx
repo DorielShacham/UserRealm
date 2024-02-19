@@ -1,4 +1,4 @@
-import LoadingGif from '../../assets/Assetstest/Infinity-1s-200px.gif'
+import LoadingGif from '../../assets/Assetstest/Disk-0.3s-217px.gif'
 import './loader.css';
 
 const Loader = () => {
