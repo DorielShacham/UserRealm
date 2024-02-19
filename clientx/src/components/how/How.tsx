@@ -87,7 +87,6 @@ export const How = () => {
         <ul className="services__left">
           <li className="service__item account active">
             <span>
-            <i className="fi fi-sr-user"></i>
             </span>
             <div>
               <h3>Create account</h3>
@@ -95,7 +94,6 @@ export const How = () => {
           </li>
           <li className="service__item blog">
             <span>
-            <i className="fi fi-sr-pencil"></i>
             </span>
             <div>
               <h3>Create your blog</h3>
@@ -103,7 +101,6 @@ export const How = () => {
           </li>
           <li className="service__item viewlike">
             <span>
-            <i className="fi fi-sr-thumbs-up"></i>
             </span>
             <div>
               <h3>View & Like</h3>
