@@ -7,7 +7,7 @@
     width: 100vw;
     display: grid;
     place-items: center;
-    background: rgb(240, 240, 240);
+    background: #fff;
 }
 
 .loader__image{
