@@ -20,7 +20,6 @@ export interface Post {
 
 export const Posts = () => {
   const [visiblePosts, setVisiblePosts] = useState(3);
-  const [totalPosts, setTotalPosts] = useState(0);
   const [posts, setPosts] = useState<Post[]>([]);
   const [isloading, setIsLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);

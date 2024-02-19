@@ -23,8 +23,6 @@ export const PostItem = ({
   const shortDescription =
     description.length > 145 ? description.substr(0, 145) + "..." : description;
 
-    const imgUrl = thumbnail ? `${process.env.REACT_APP_ASSETS_URL}/API/${thumbnail}` : '';
-
   return (
     <article className="post">
       <Link to={`/posts/${postID}`}>
