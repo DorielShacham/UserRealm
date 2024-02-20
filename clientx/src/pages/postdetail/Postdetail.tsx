@@ -10,6 +10,7 @@ import LikeButton from "../../components/likeButton/LikeButton";
 import axios from "axios";
 import { delay } from "../../modules/setTimeout";
 import dummy_full_post from "../../dummy_data/post_full.json";
+import { IoMdCopy } from "react-icons/io";
 
 export const Postdetail = () => {
   const { id } = useParams();
@@ -18,6 +19,7 @@ export const Postdetail = () => {
   const [error, setError] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [developerLink, setDeveloperLink] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const { currentUser } = useContext(UserContext);
 
@@ -47,6 +49,14 @@ export const Postdetail = () => {
 
   useEffect(() => {}, [currentUser, post]);
 
+  const handleShareClick = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 1500);
+  };
+
   if (isLoading) {
     return <Loader />;
   }
@@ -67,8 +77,13 @@ export const Postdetail = () => {
               </div>
             )}
             {currentUser && (
-              <LikeButton postId={id || ""} currentUser={currentUser} className="post-detail__like-button" />
-
+              <div className="post-detail__action-buttons">
+                <LikeButton postId={id || ""} currentUser={currentUser} className="post-detail__like-button" />
+                <button className="btn sm" onClick={handleShareClick}>
+                  <IoMdCopy /> Share
+                </button>
+                {copied && <span className="copied-message">Copied</span>}
+              </div>
             )}
           </div>
           <h1>{post.title}</h1>
