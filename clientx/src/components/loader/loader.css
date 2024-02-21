@@ -11,9 +11,17 @@
 }
 
 .hotthorn__loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: var( --color-primary);
 }
 h3{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
     font-size: larger;
     font-family: sans-serif, Impact, Haettenschweiler, 'Arial Narrow Bold';
     color: var(--color-primary);
