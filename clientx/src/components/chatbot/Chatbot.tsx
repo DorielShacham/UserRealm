@@ -75,8 +75,8 @@ const Chatbot: React.FC = () => {
             ) : (
               <div className="chatbot-messages">
                 <div className="chatbot-message">
-                  <div>{messages[0]}</div>
-                  <div>{messages[1]}</div>
+                  <div className="question">{messages[0]}</div>
+                  <div className="answer">{messages[1]}</div>
                 </div>
               </div>
             )}
