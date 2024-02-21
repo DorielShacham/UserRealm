@@ -4,7 +4,7 @@ import "./chatbot.css";
 const Chatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<string[]>([]);
-  const [showOptions, setShowOptions] = useState(true);
+  const [showOptions, setShowOptions] = useState(true); 
 
   const handleOpenChat = () => {
     setIsOpen(true);
@@ -40,11 +40,8 @@ const Chatbot: React.FC = () => {
       default:
         break;
     }
-    setMessages(prevMessages => [
-      ...prevMessages,
-      option,
-      answer,
-    ]);
+    setMessages([option, answer]); 
+    setShowOptions(false); 
   };
   
   useEffect(() => {
@@ -77,11 +74,10 @@ const Chatbot: React.FC = () => {
               </div>
             ) : (
               <div className="chatbot-messages">
-                {messages.map((message, index) => (
-                  <div key={index} className="chatbot-message">
-                    {message}
-                  </div>
-                ))}
+                <div className="chatbot-message">
+                  <div>{messages[0]}</div>
+                  <div>{messages[1]}</div>
+                </div>
               </div>
             )}
           </div>
@@ -91,5 +87,4 @@ const Chatbot: React.FC = () => {
   );
 };
 
-// Export the Chatbot component
 export default Chatbot;
