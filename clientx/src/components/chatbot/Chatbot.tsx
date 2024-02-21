@@ -25,13 +25,15 @@ const Chatbot: React.FC = () => {
   ];
 
   const handleOptionClick = (option: string) => {
-    console.log("test");
+    console.log("Previous messages:", messages);
     setMessages(prevMessages => [
       ...prevMessages,
       option,
       "Did you try to reload or clear cache and cookies?",
     ]);
+    console.log("New messages:", messages);
   };
+  
   
 
   return (
