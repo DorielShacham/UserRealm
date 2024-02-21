@@ -1,5 +1,5 @@
 // Chatbot.tsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./chatbot.css";
 
 const Chatbot: React.FC = () => {
@@ -34,8 +34,10 @@ const Chatbot: React.FC = () => {
     console.log("New messages:", messages);
   };
   
+  useEffect(() => {
+    console.log("New messages:", messages);
+  }, [messages]);
   
-
   return (
     <div className={`chatbot-container ${isOpen ? "open" : ""}`}>
       <button className="chatbot-toggle-button" onClick={handleOpenChat}>
