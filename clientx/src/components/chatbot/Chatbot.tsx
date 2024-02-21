@@ -1,41 +1,70 @@
+// Chatbot.tsx
 import React, { useState } from 'react';
 import './chatbot.css';
 
 const Chatbot: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<string[]>([]);
-  const [inputValue, setInputValue] = useState('');
+  const [showOptions, setShowOptions] = useState(true);
 
-  const handleMessageSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (inputValue.trim() !== '') {
-      setMessages([...messages, inputValue]);
-      setInputValue('');
-    }
+  const handleOpenChat = () => {
+    setIsOpen(true);
   };
 
-  return (
-    <div className="chatbot-container">
+  const handleCloseChat = () => {
+    setIsOpen(false);
+  };
+
+  const handleOptionClick = (option: string) => {
+    setMessages([...messages, option]);
+    setShowOptions(false);
+    setMessages([...messages, 'Did you try to reload or clear cache and cookies?']);
+  };
+
+  const renderChatContent = () => {
+    if (!isOpen) {
+      return (
+        <button className="chatbot-toggle-button" onClick={handleOpenChat}>
+          Open Chat
+        </button>
+      );
+    }
+
+    if (showOptions) {
+      return (
+        <div className="chatbot-options">
+          <p>Hello, I am Hotthorn helper. How can I help you today?</p>
+          <button onClick={() => handleOptionClick('I need help with Creating a user')}>
+            I need help with Creating a user
+          </button>
+          <button onClick={() => handleOptionClick('I need help with Editing my Account')}>
+            I need help with Editing my Account
+          </button>
+          <button onClick={() => handleOptionClick('I need help with creating my post')}>
+            I need help with creating my post
+          </button>
+          <button onClick={() => handleOptionClick('I need help with Editing my post')}>
+            I need help with Editing my post
+          </button>
+        </div>
+      );
+    }
+
+    return (
       <div className="chatbot-messages">
         {messages.map((message, index) => (
           <div key={index} className="chatbot-message">
             {message}
           </div>
         ))}
-      </div>
-      <form onSubmit={handleMessageSubmit} className="chatbot-input-form">
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Type a message..."
-          className="chatbot-input"
-        />
-        <button type="submit" className="chatbot-send-button">
-          Send
+        <button className="chatbot-close-button" onClick={handleCloseChat}>
+          X
         </button>
-      </form>
-    </div>
-  );
+      </div>
+    );
+  };
+
+  return <div className="chatbot-container">{renderChatContent()}</div>;
 };
 
 export default Chatbot;
