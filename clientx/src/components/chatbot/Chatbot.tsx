@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { IoChatboxOutline } from "react-icons/io5";
 import "./chatbot.css";
 
 const Chatbot: React.FC = () => {
@@ -51,7 +52,7 @@ const Chatbot: React.FC = () => {
   return (
     <div className={`chatbot-container ${isOpen ? "open" : ""}`}>
       <button className="chatbot-toggle-button" onClick={handleOpenChat}>
-        Open Chat
+      <IoChatboxOutline />
       </button>
       {isOpen && (
         <div>
