@@ -10,6 +10,10 @@
     background: #fff;
 }
 
+.hotthorn__loader{
+    color: var( --color-primary);
+}
+
 .loader__image{
     z-index: 10;
     width: 10.5rem;

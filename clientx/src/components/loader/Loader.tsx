@@ -5,8 +5,8 @@ const Loader = () => {
   return (
     <div className="loader">
       <div className="loader__image">
-        <div>
-          <h3>Hotthorn<img src="../../../public/android-chrome-192x192.png"></img></h3>
+        <div className="hotthorn__loader">
+          <h3>Hotthorn<img src="../../assets/Assetstest/hotthornlogo.png"></img></h3>
         </div>
         <img src={LoadingGif} alt="Loading animation" />
       </div>

@@ -1,11 +1,13 @@
-@import '../../index.css';
+@import "../../index.css";
 
 .chatbot-container {
-  width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 20px auto;
+  position: fixed;
+  top: 10rem;
+  border: 0.1rem solid var(--color-primary);
+  border-radius: 1rem;
+  margin: 2rem auto;
+  padding: 1rem;
+  width: 15rem;
 }
 
 .chatbot-messages {
@@ -14,14 +16,14 @@
 }
 
 .chatbot-message {
-  background-color: #f0f0f0;
-  border-radius: 5px;
+  background-color: var(--color-white);
+  border-radius: 1rem;
   padding: 5px 10px;
   margin: 5px 0;
 }
 
 .chatbot-options {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 .chatbot-options button {
@@ -29,16 +31,16 @@
   width: 100%;
   padding: 8px;
   margin-bottom: 5px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   border: none;
-  border-radius: 5px;
+  border-radius: 1rem;
   cursor: pointer;
   outline: none;
 }
 
 .chatbot-options button:hover {
-  background-color: #0056b3;
+  background-color: #ff6a00;
 }
 
 .chatbot-close-button {
