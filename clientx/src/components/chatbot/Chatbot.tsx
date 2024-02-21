@@ -66,7 +66,7 @@ const Chatbot: React.FC = () => {
               <div className="chatbot-messages">
                 {messages.map((message, index) => (
                   <div key={index} className="chatbot-message">
-                    {message}
+                    {messages}
                   </div>
                 ))}
               </div>
