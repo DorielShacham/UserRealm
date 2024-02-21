@@ -1,6 +1,6 @@
 // Chatbot.tsx
-import React, { useState } from 'react';
-import './chatbot.css';
+import React, { useState } from "react";
+import "./chatbot.css";
 
 const Chatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,13 +16,23 @@ const Chatbot: React.FC = () => {
     setIsOpen(false);
   };
 
+  const options = [
+    "I need help with Creating a user",
+    "I need help with Editing my Account",
+    "I need help with creating my post",
+    "I need help with Editing my post",
+  ];
+
   const handleOptionClick = (option: string) => {
-    setMessages([...messages, option]);
-    setMessages([...messages, 'Did you try to reload or clear cache and cookies?']);
+    setMessages([
+      ...messages,
+      option,
+      "Did you try to reload or clear cache and cookies?",
+    ]);
   };
 
   return (
-    <div className={`chatbot-container ${isOpen ? 'open' : ''}`}>
+    <div className={`chatbot-container ${isOpen ? "open" : ""}`}>
       <button className="chatbot-toggle-button" onClick={handleOpenChat}>
         Open Chat
       </button>
@@ -35,18 +45,15 @@ const Chatbot: React.FC = () => {
             {showOptions ? (
               <div className="chatbot-options">
                 <p>Hello, I am Hotthorn helper. How can I help you today?</p>
-                <button className="chatbot-button" onClick={() => handleOptionClick('I need help with Creating a user')}>
-                  I need help with Creating a user
-                </button>
-                <button className="chatbot-button" onClick={() => handleOptionClick('I need help with Editing my Account')}>
-                  I need help with Editing my Account
-                </button>
-                <button className="chatbot-button" onClick={() => handleOptionClick('I need help with creating my post')}>
-                  I need help with creating my post
-                </button>
-                <button className="chatbot-button" onClick={() => handleOptionClick('I need help with Editing my post')}>
-                  I need help with Editing my post
-                </button>
+                {options.map((option, index) => (
+                  <button
+                    key={index}
+                    className="chatbot-button"
+                    onClick={() => handleOptionClick(option)}
+                  >
+                    {option}
+                  </button>
+                ))}
               </div>
             ) : (
               <div className="chatbot-messages">
