@@ -9,6 +9,7 @@ const Chatbot: React.FC = () => {
 
   const handleOpenChat = () => {
     setIsOpen(true);
+    setShowOptions(true);
   };
 
   const handleCloseChat = () => {
