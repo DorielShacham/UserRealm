@@ -10,7 +10,6 @@ const Chatbot: React.FC = () => {
   const handleOpenChat = () => {
     setIsOpen(true);
     setShowOptions(true);
-    console.log("these are the messages" + messages, "these are the options" + showOptions)
   };
 
   const handleCloseChat = () => {
@@ -25,13 +24,11 @@ const Chatbot: React.FC = () => {
   ];
 
   const handleOptionClick = (option: string) => {
-    console.log("Previous messages:", messages);
     setMessages(prevMessages => [
       ...prevMessages,
       option,
       "Did you try to reload or clear cache and cookies?",
     ]);
-    console.log("New messages:", messages);
   };
   
   useEffect(() => {
@@ -66,7 +63,7 @@ const Chatbot: React.FC = () => {
               <div className="chatbot-messages">
                 {messages.map((message, index) => (
                   <div key={index} className="chatbot-message">
-                    {messages}
+                    {message}
                   </div>
                 ))}
               </div>
@@ -75,7 +72,7 @@ const Chatbot: React.FC = () => {
         </div>
       )}
     </div>
-  );
+  );  
 };
 
 export default Chatbot;
