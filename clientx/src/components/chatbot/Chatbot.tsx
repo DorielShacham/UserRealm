@@ -24,12 +24,13 @@ const Chatbot: React.FC = () => {
   ];
 
   const handleOptionClick = (option: string) => {
-    setMessages([
-      ...messages,
+    setMessages(prevMessages => [
+      ...prevMessages,
       option,
       "Did you try to reload or clear cache and cookies?",
     ]);
   };
+  
 
   return (
     <div className={`chatbot-container ${isOpen ? "open" : ""}`}>
