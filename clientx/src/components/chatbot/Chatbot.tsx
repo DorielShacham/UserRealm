@@ -24,6 +24,7 @@ const Chatbot: React.FC = () => {
   ];
 
   const handleOptionClick = (option: string) => {
+    console.log("test");
     setMessages(prevMessages => [
       ...prevMessages,
       option,
