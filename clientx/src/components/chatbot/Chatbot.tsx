@@ -36,43 +36,38 @@ const Chatbot: React.FC = () => {
       "Did you try to reload or clear cache and cookies?",
     ]);
   };
-
-  // useEffect to update the HTML content with messages when the messages state changes
+  
+  // useEffect to log new messages when the messages state changes
   useEffect(() => {
-    const chatbotMessages = document.getElementById("chatbot-messages");
-    if (chatbotMessages) {
-      chatbotMessages.innerHTML = messages.map((message, index) => `<div key=${index} class="chatbot-message">${message}</div>`).join('');
-    }
+    console.log("New messages:", messages);
   }, [messages]);
 
   // Return the JSX for the Chatbot component
   return (
-    <div className={`chatbot-container ${isOpen ? "open" : ""}`}>
-      <button className="chatbot-toggle-button" onClick={handleOpenChat}>
-        Open Chat
-      </button>
-      {isOpen && (
-        <div>
-          <button className="chatbot-close-button" onClick={handleCloseChat}>
-            X
-          </button>
-          <div className="chatbot-content">
-            {showOptions ? (
-              <div className="chatbot-options">
-                <p>Hello, I am Hotthorn helper. How can I help you today?</p>
-                {options.map((option, index) => (
-                  <button key={index} className="chatbot-button" onClick={() => handleOptionClick(option)}>
-                    {option}
-                  </button>
-                ))}
-              </div>
+    React.createElement("div", { className: `chatbot-container ${isOpen ? "open" : ""}` },
+      React.createElement("button", { className: "chatbot-toggle-button", onClick: handleOpenChat }, "Open Chat"),
+      isOpen && (
+        React.createElement("div", null,
+          React.createElement("button", { className: "chatbot-close-button", onClick: handleCloseChat }, "X"),
+          React.createElement("div", { className: "chatbot-content" },
+            showOptions ? (
+              React.createElement("div", { className: "chatbot-options" },
+                React.createElement("p", null, "Hello, I am Hotthorn helper. How can I help you today?"),
+                options.map((option, index) => (
+                  React.createElement("button", { key: index, className: "chatbot-button", onClick: () => handleOptionClick(option) }, option)
+                ))
+              )
             ) : (
-              <div id="chatbot-messages" className="chatbot-messages"></div>
-            )}
-          </div>
-        </div>
-      )}
-    </div>
+              React.createElement("div", { className: "chatbot-messages" },
+                messages.map((message, index) => (
+                  React.createElement("div", { key: index, className: "chatbot-message" }, message)
+                ))
+              )
+            )
+          )
+        )
+      )
+    )
   );
 };
 
