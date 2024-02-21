@@ -1,4 +1,3 @@
-// Chatbot.tsx
 import React, { useState } from 'react';
 import './chatbot.css';
 
@@ -9,6 +8,7 @@ const Chatbot: React.FC = () => {
 
   const handleOpenChat = () => {
     setIsOpen(true);
+    setShowOptions(true);
   };
 
   const handleCloseChat = () => {

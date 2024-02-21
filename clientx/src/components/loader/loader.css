@@ -16,13 +16,13 @@
     align-items: center;
     color: var( --color-primary);
 }
-h3{
+h1{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     font-weight: 600;
-    font-size: larger;
+    font-size: 3rem;
     font-family: sans-serif, Impact, Haettenschweiler, 'Arial Narrow Bold';
     color: var(--color-primary);
 }

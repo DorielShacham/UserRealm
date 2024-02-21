@@ -6,7 +6,7 @@ const Loader = () => {
     <div className="loader">
       <div className="loader__image">
         <div className="hotthorn__loader">
-          <h3>Hotthorn</h3>
+          <h1>Hotthorn</h1>
         </div>
         <img src={LoadingGif} alt="Loading animation" />
       </div>
