@@ -13,6 +13,11 @@
 .hotthorn__loader{
     color: var( --color-primary);
 }
+h3{
+    font-size: larger;
+    font-family: sans-serif, Impact, Haettenschweiler, 'Arial Narrow Bold';
+    color: var(--color-primary);
+}
 
 .loader__image{
     z-index: 10;
