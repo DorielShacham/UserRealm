@@ -1,9 +1,11 @@
 import './footer.css'
 import { Link } from 'react-router-dom';
+import Chatbot from '../chatbot/Chatbot';
 
 export const Footer = () => {
   return (
     <footer>
+      <Chatbot />
       <ul className='footer__categories'>
         <li><Link to='/posts/categories/Portfolio'>Portfolio</Link></li>
         <li><Link to='/posts/categories/Blog'>Blog</Link></li>

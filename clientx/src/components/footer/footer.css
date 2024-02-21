@@ -4,6 +4,8 @@ footer{
     background: var(--color-gray-900);
     margin-top: 6rem;
     padding-top: 6rem;
+    position: fixed;
+    bottom: 0;
 }
 
 .footer__categories {
