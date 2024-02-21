@@ -31,11 +31,14 @@
   }
   
   .chatbot-messages {
+    color: var(--color-white);
+    background-color: var(--color-primary);
     max-height: 200px;
     overflow-y: auto;
   }
   
   .chatbot-message {
+    color: var(--color-primary);
     background-color: var(--color-white);
     border-radius: 1rem;
     padding: 5px 10px;
