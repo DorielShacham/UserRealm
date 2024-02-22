@@ -55,7 +55,7 @@ h1 {
   width: 68px;
   position: absolute;
   transform: translate(-34px);
-  background-color: var(--color-action);
+  background-color: var(--color-primary);
   border-radius: 2px;
   animation: initial-loading 1.5s ease infinite;
 }
