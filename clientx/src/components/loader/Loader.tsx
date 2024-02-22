@@ -10,7 +10,6 @@ const Loader = () => {
         </div>
         <div className="loading-bar">
           <div className="blue-bar">
-
           </div>
         </div>
         {/* <img src={LoadingGif} alt="Loading animation" /> */}
