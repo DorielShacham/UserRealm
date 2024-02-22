@@ -8,7 +8,12 @@ const Loader = () => {
         <div className="hotthorn__loader">
           <h1>Hotthorn</h1>
         </div>
-        <img src={LoadingGif} alt="Loading animation" />
+        <div className="loading-bar">
+          <div className="blue-bar">
+
+          </div>
+        </div>
+        {/* <img src={LoadingGif} alt="Loading animation" /> */}
       </div>
     </div>
   );
