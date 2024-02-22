@@ -7,6 +7,10 @@
     padding: 2rem 0;
 }
 
+.title{
+    color: black;
+}
+
 .post-detail__header {
     display: flex;
     justify-content: space-between;

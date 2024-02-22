@@ -86,7 +86,7 @@ export const Postdetail = () => {
               </div>
             )}
           </div>
-          <h1>{post.title}</h1>
+          <h1 className="title">{post.title}</h1>
           <div className="post-detail__thumbnail">
             <img src={post?.thumbnail} alt="Blog Picture" />
           </div>
