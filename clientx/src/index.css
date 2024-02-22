@@ -139,22 +139,22 @@ textarea {
   background: var(--color-red);
   color: var(--color-white);
   border: 0.2px solid var(--color-white);
-  background: 
-  linear-gradient(90deg, #333 50%, transparent 0) repeat-x,
-  linear-gradient(90deg, #333 50%, transparent 0) repeat-x,
-  linear-gradient(0deg, #333 50%, transparent 0) repeat-y,
-  linear-gradient(0deg, #333 50%, transparent 0) repeat-y;
-background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px;
-background-position: 0 0, 0 100%, 0 0, 100% 0;
-}
-.btn.danger:hover {
-    animation: linearGradientMove .3s infinite linear;
+  background: linear-gradient(90deg, white 50%, transparent 50%), 
+                linear-gradient(90deg, white 50%, transparent 50%), 
+                linear-gradient(0deg, white 50%, transparent 50%), 
+                linear-gradient(0deg, white 50%, transparent 50%);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: 16px 4px, 16px 4px, 4px 16px, 4px 16px;
+    background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0px;
+    border-radius: 5px;
+    padding: 10px;
+    animation: dash 5s linear infinite;
 }
 
-@keyframes linearGradientMove {
-    100% {
-        background-position: 4px 0, -4px 100%, 0 -4px, 100% 4px;
-    }
+@keyframes dash {
+  to {
+      background-position: 100% 0%, 0% 100%, 0% 0%, 100% 100%;
+  }
 }
 
 .btn.like {
