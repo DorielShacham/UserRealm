@@ -1,19 +1,6 @@
 @import "../../index.css";
 
-.chatbot-container {
-  position: fixed;
-  bottom: 5rem;
-  color: var(--color-white);
-  border-radius: 1rem;
-  margin: 2rem auto;
-  padding: 1rem;
-  width: 5rem;
-  font-family: serif, Arial, Helvetica, sans-serif;
-  transition: width 0.5s ease;
-  overflow: hidden;
-}
-
-.chatbot-container .open{
+.chatbot-container{
   position: fixed;
   bottom: 5rem;
   background-color: var(--color-gray-900);
