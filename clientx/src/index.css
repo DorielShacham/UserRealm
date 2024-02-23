@@ -35,7 +35,7 @@
   box-sizing: border-box;
 }
 #root > section {
-  min-height: 100svh;
+  min-height: 70svh;
 }
 
 body {
