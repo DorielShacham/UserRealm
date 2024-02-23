@@ -10,7 +10,7 @@ const About = () => {
     return <Loader />;
   }
   return (
-    <div className="about">
+    <section className="about">
       <section className="about__section">
         <h2>Welcome to Hotthorn</h2>
         <p>
@@ -65,7 +65,7 @@ const About = () => {
           </a>
         </div>
       </section>
-    </div>
+    </section>
   );
 };
 
