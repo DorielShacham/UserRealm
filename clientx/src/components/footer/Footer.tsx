@@ -18,7 +18,7 @@ export const Footer = () => {
       <ul className='footer__categories'>
         {categories.map((category, index) => (
           <li key={index}>
-            <Link to={`${constantPath}${category}`}>{category}</Link>
+            <Link to={`/posts/${constantPath}${category}`}>{category}</Link>
           </li>
         ))}
       </ul>
