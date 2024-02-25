@@ -46,7 +46,7 @@ const Chatbot: React.FC = () => {
   };
   
   useEffect(() => {
-    console.log("New messages:", messages);
+    console.log(messages);
   }, [messages]);
 
   return (
