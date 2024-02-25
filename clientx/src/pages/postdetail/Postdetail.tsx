@@ -110,8 +110,8 @@ export const Postdetail = () => {
             </div>
           )}
 
-      <Comment commenter="User123" text="This is a great post!" />
-      <Comment commenter="User456" text="Thanks for sharing!" />
+      {/* <Comment commenter="User123" text="This is a great post!" />
+      <Comment commenter="User456" text="Thanks for sharing!" /> */}
         </div>
       )}
     </section>

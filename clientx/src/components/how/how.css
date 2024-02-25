@@ -31,10 +31,6 @@ hr {
   width: 100vw;
 }
 
-.active{
-  color: var(--color-primary);
-}
-
 .services__left {
   display: flex;
   flex-direction: column;
