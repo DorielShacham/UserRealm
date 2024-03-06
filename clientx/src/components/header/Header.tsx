@@ -5,6 +5,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useState, useContext } from "react";
 import { UserContext } from "../../contex/userContext";
 import Realm from "../posts/Realm";
+import "hotthornlogo.png" from "../../assets/Assetstest/hotthornlogo.png"
 
 export const Header = () => {
   const [isNavShowing, setIsNavShowing] = useState(
@@ -24,7 +25,8 @@ export const Header = () => {
     <nav>
       <div className="container nav__container">
         <Link to={"/"} className="nav__logo" onClick={closeNavBar}>
-          <Realm />
+          {/* <Realm /> */}
+          <img src="../../assets/Assetstest/hotthornlogo.png" />
         </Link>
         {currentUser ? (
           <ul className={`nav__menu ${isNavShowing ? "show" : ""}`}>
