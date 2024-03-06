@@ -90,9 +90,11 @@
 
 .post__title {
   transition: 0.3s;
+  display:flex;
 }
 .post__title:hover{
   width: 100%;
+  display:flex;
   background: var(--color-primary);
   border-radius: 0.5rem;
   padding: 0.5rem;
