@@ -10,7 +10,6 @@ import LikeButton from "../../components/likeButton/LikeButton";
 import axios from "axios";
 import { delay } from "../../modules/setTimeout";
 import dummy_full_post from "../../dummy_data/post_full.json";
-import Comment from '../../components/comment/Comment';
 import { IoMdCopy } from "react-icons/io";
 
 export const Postdetail = () => {
@@ -109,9 +108,6 @@ export const Postdetail = () => {
               </h3>
             </div>
           )}
-
-      {/* <Comment commenter="User123" text="This is a great post!" />
-      <Comment commenter="User456" text="Thanks for sharing!" /> */}
         </div>
       )}
     </section>

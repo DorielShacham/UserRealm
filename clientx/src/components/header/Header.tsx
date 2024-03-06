@@ -5,7 +5,6 @@ import { FaBars } from "react-icons/fa6";
 import { AiOutlineClose } from "react-icons/ai";
 import { useState, useContext } from "react";
 import { UserContext } from "../../contex/userContext";
-import Realm from "../posts/Realm";
 
 export const Header = () => {
   const [isNavShowing, setIsNavShowing] = useState(
