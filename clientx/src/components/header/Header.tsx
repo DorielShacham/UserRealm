@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import "./header.css";
+import hotthornLogo from "../../assets/Assetstest/hotthornlogo.png";
 import { FaBars } from "react-icons/fa6";
 import { AiOutlineClose } from "react-icons/ai";
 import { useState, useContext } from "react";
 import { UserContext } from "../../contex/userContext";
 import Realm from "../posts/Realm";
-import "hotthornlogo.png" from "../../assets/Assetstest/hotthornlogo.png"
 
 export const Header = () => {
   const [isNavShowing, setIsNavShowing] = useState(
@@ -26,7 +26,9 @@ export const Header = () => {
       <div className="container nav__container">
         <Link to={"/"} className="nav__logo" onClick={closeNavBar}>
           {/* <Realm /> */}
-          <img src="../../assets/Assetstest/hotthornlogo.png" />
+          <Link to={"/"} className="nav__logo" onClick={closeNavBar}>
+            <img src={hotthornLogo} alt="Hotthorn Logo" />
+          </Link>
         </Link>
         {currentUser ? (
           <ul className={`nav__menu ${isNavShowing ? "show" : ""}`}>
