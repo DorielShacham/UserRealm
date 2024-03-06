@@ -25,10 +25,7 @@ export const Header = () => {
     <nav>
       <div className="container nav__container">
         <Link to={"/"} className="nav__logo" onClick={closeNavBar}>
-          {/* <Realm /> */}
-          <Link to={"/"} className="nav__logo" onClick={closeNavBar}>
-            <img src={hotthornLogo} alt="Hotthorn Logo" />
-          </Link>
+          <img src={hotthornLogo} alt="Hotthorn Logo" />
         </Link>
         {currentUser ? (
           <ul className={`nav__menu ${isNavShowing ? "show" : ""}`}>
