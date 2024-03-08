@@ -67,20 +67,23 @@ hr {
     0rem 0.1rem 0.5rem -0.5rem #fff;
 }
 
-.services__left li.active h3 {
+.active h3 {
   color: var(--color-primary);
 }
 
 li.service__item.account:hover {
+  color: var(--color-primary);
   border-right: 0.2rem solid var(--color-primary);
   margin-right: 0.5rem;
 }
 
 li.service__item.blog:hover {
+  color: var(--color-primary);
   border-right: 0.2rem solid var(--color-primary);
   margin-right: 0.5rem;
 }
 li.service__item.viewlike:hover {
+  color: var(--color-primary);
   border-right: 0.2rem solid var(--color-primary);
   margin-right: 0.5rem;
 }
