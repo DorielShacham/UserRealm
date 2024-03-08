@@ -100,10 +100,6 @@
   padding: 0.5rem;
 }
 
-.post:hover .post__title {
-  color: white;
-}
-
 /*Search posts*/
 .search__container{
   margin: 2rem;
@@ -177,19 +173,6 @@
   display: flex;
   gap: 1rem;
   align-items: flex-start;
-}
-
-.post:hover .post-author,
-.post:hover .post__author-details > h5 {
-  color: white;
-}
-
-.post:hover #btnCategory{
-  background-color: #fff;
-  color: var(--color-primary);
-}
-.post:hover .post__author-details > small{
-  color: white;
 }
 
 .post__author-avatar {
