@@ -50,7 +50,8 @@ hr {
 }
 
 .howImage {
-  height: 80%;
+  width: 100%;
+  height: auto;
   transform: rotateX(-65deg) rotate(20deg);
   transform-style: preserve-3d;
   border-radius: 1rem;
@@ -59,9 +60,15 @@ hr {
 }
 
 .howImage:hover {
+  width: 100%;
+  height: auto;
   transform: translate3d(0px, -16px, 0px) rotateX(0deg) rotateZ(0deg);
   box-shadow: 0 0.3rem 0 0 #f9f9fb, -1px 0 28px 0 rgba(34, 33, 81, 0.01),
     0rem 0.1rem 0.5rem -0.5rem #fff;
+}
+
+.services__left li.active h3 {
+  color: var(--color-primary);
 }
 
 li.service__item.account:hover {
