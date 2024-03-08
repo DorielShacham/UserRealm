@@ -169,6 +169,7 @@ textarea {
   height: 3rem;
   background: var(--color-primary);
   color: var(--color-white);
+  border-radius: 50%;
 }
 
 .btn.category {
