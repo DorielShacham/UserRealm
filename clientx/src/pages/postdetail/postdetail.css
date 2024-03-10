@@ -77,6 +77,10 @@
     width: 3rem;
     height: 3rem;
 }
+.copied-message{
+    font-weight: bold;
+    font-size: large;
+}
 
 @media screen and (max-width: 800px){
     .post-detail{
