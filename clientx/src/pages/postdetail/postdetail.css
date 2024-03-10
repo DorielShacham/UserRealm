@@ -79,7 +79,6 @@
 }
 .copied-message{
     font-weight: bold;
-    font-size: large;
 }
 
 @media screen and (max-width: 800px){
