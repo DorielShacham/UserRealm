@@ -32,9 +32,10 @@ export const Developers = () => {
         <div className="container developers__container">
           {developers.map((developer) => {
             const { _id: id, avatar, name, posts } = developer;
+            const hasFiveOrMorePosts = posts >= 5;
 
             return (
-              <Link key={id} to={`/posts/users/${id}`} className="developer">
+              <Link key={id} to={`/posts/users/${id}`} className={`developer ${hasFiveOrMorePosts ? 'has-five-posts' : ''}`}>
                 <div className="developer__avatar">
                   <img src={`${avatar}`} alt={`Image of ${name}`} />
                 </div>

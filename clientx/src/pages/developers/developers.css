@@ -5,7 +5,10 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
 }
-
+.developer.has-five-posts {
+    border: 0.2rem solid orange;
+  }
+  
 .developer{
     background: var(--color-white);
     padding: 1rem;
