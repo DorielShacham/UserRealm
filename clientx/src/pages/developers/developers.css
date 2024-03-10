@@ -7,11 +7,10 @@
 }
 .developer.has-five-posts {
     --angle: 0deg;
-    border-width: 2rem;
+    border-width: 0.2rem;
     border-style: dotted;
-    border-image-source: linear-gradient(var(--angle),var(--color-primary),#ba9621,#f39e00 10em );
+    border-image-source: linear-gradient(var(--angle),var(--color-primary),#fff700,#ffa601 10em );
     border-image-slice: 10;
-    /* border: 0.2rem solid  var(--color-primary); */
     animation: 5s rotate linear infinite;
     -webkit-animation: 10s rotate linear infinite;
   }
