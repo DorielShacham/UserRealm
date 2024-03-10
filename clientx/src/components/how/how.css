@@ -67,7 +67,13 @@ hr {
     0rem 0.1rem 0.5rem -0.5rem #fff;
 }
 
-.active h3 {
+#services > div > ul > li.service__item.account.active > div > h3 {
+  color: var(--color-primary);
+}
+#services > div > ul > li.service__item.blog.active > div > h3 {
+  color: var(--color-primary);
+}
+#services > div > ul > li.service__item.viewlike.active > div > h3 {
   color: var(--color-primary);
 }
 
