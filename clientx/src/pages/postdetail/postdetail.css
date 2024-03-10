@@ -72,6 +72,11 @@
     border-radius: 1rem;
 }
 
+
+.share{
+    display:flex;
+    flex: 1;
+}
 #share{
     border-radius: 50%;
     width: 3rem;

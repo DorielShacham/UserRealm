@@ -76,10 +76,12 @@ export const Postdetail = () => {
                 <Deletepost postId={id} />
               </div>
             )}
+            <div className="share">
             <button className="btn sm" id="share" onClick={handleShareClick}>
               <IoMdCopy />
             </button>
             {copied && <span className="copied-message">Copied Link</span>}
+            </div>
             {currentUser && (
               <div className="post-detail__action-buttons">
                 <LikeButton
