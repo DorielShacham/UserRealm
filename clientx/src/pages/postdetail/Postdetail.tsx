@@ -80,11 +80,12 @@ export const Postdetail = () => {
               <div className="post-detail__action-buttons">
                 <LikeButton postId={id || ""} currentUser={currentUser} className="post-detail__like-button" />
                 <button className="btn sm" id="share" onClick={handleShareClick}>
-                  <IoMdCopy /> Share
+                  <IoMdCopy />
                 </button>
-                {copied && <span className="copied-message">Copied</span>}
+
               </div>
             )}
+             {copied && <span className="copied-message">Copied Link</span>}
           </div>
           <h1 className="title">{post.title}</h1>
           <div className="post-detail__thumbnail">
