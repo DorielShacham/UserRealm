@@ -25,7 +25,7 @@ export const Developerposts = () => {
         const response = await axios.get<Post[]>(`${process.env.REACT_APP_BASE_URL}/posts/users/${id}`);
         setPosts(response?.data || []);
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setPosts([]);
       }
       setIsLoading(false);

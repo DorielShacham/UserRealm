@@ -61,7 +61,7 @@ export const Developers = () => {
 
         setUserRoles(roleMap);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
       setIsLoading(false);
     };

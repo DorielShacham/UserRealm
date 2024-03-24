@@ -54,7 +54,7 @@ export const Userprofile = () => {
         setEmail(email);
         setAvatar(avatar);
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
 
     }
@@ -71,14 +71,14 @@ export const Userprofile = () => {
           const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/users/change-avatar`, { avatar: avatarDataUrl }, { headers: { Authorization: `Bearer ${token}` } });
           setAvatar(avatarDataUrl);
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
       };
       if (avatar) {
         reader.readAsDataURL(avatar);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
   

@@ -36,7 +36,7 @@ export const Posts = () => {
       setPosts(response?.data || []);
       setVisiblePosts(newVisiblePosts);
     } catch (error) {
-      console.log("API Error:", error);
+      console.error("API Error:", error);
     } finally {
       setLoadingMore(false);
     }
@@ -56,7 +56,7 @@ export const Posts = () => {
       );
       setSearchResults(filteredPosts);
     } catch (error) {
-      console.log("API Error:", error);
+      console.error("API Error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -87,7 +87,7 @@ export const Posts = () => {
         setPosts(response?.data || []);
         setVisiblePosts((prev) => prev + 3);
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setPosts([]);
       }
       setIsLoading(false);

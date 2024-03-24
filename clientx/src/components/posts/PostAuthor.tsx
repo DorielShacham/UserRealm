@@ -30,7 +30,7 @@ export const PostAuthor: React.FC<PostAuthorProps> = ({ developerID, createdAt }
         const response = await axios.get<Developer>(`${process.env.REACT_APP_BASE_URL}/users/${developerID}`);
         setDeveloper(response?.data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
 

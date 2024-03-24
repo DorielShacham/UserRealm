@@ -25,7 +25,7 @@ export const Categoryposts = () => {
         const response = await axios.get<Post[]>(`${process.env.REACT_APP_BASE_URL}/posts/categories/${category}`);
         setPosts(response?.data || []);
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setPosts([]);
       }
       setIsLoading(false);

@@ -65,7 +65,6 @@ export const How = () => {
       item.addEventListener("click", () => {
         removeActiveClass();
         const serviceClass = item.classList[1];
-        console.log(serviceClass);
         getService(serviceClass);
         item.classList.add("active");
       });
