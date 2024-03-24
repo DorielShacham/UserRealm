@@ -6,7 +6,6 @@ const adminMiddleware = (req, res, next) => {
     if (!user || user.role !== 'admin') {
         return next(new HttpError("Unauthorized, not an admin", 403));
     }
-
     next();
 };
 
