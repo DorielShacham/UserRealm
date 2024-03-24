@@ -36,7 +36,7 @@ export const Developers = () => {
         setDevelopers(response.data);
 
         
-        const currentUser = response.data.find(developer => developer.name === 'YOUR_USERNAME');
+        const currentUser = response.data.find(developer => developer.name === 'admin');
         if (currentUser) {
           const { _id } = currentUser;
           const roleResponse = await axios.get<string>(
