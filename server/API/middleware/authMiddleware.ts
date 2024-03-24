@@ -18,6 +18,7 @@ const authMiddleware = async (req, res, next) => {
       if (err) {
         return next(new HttpError("Unauthorized, invalid token", 401));
       }
+      
       req.user = info;
       next();
     });

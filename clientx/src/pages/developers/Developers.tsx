@@ -1,26 +1,45 @@
-import './developers.css';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import Loader from '../../components/loader/Loader';
+import "./developers.css";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import Loader from "../../components/loader/Loader";
+
+// Define the type of developer object
+interface Developer {
+  _id: string;
+  avatar: string;
+  name: string;
+  posts: number;
+}
 
 export const Developers = () => {
-  const [developers, setDevelopers] = useState([]);
+  const [developers, setDevelopers] = useState<Developer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleDelete = async (userId: string) => {
+    try {
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/users/${userId}`);
+      setDevelopers(developers.filter((developer) => developer._id !== userId));
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  };
 
   useEffect(() => {
     const getDevelopers = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users`);
-        setDevelopers(response.data)
+        const response = await axios.get<Developer[]>(
+          `${process.env.REACT_APP_BASE_URL}/users`
+        );
+        setDevelopers(response.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
       setIsLoading(false);
-    }
-    getDevelopers()
-  }, [])
+    };
+    getDevelopers();
+  }, []);
 
   if (isLoading) {
     return <Loader />;
@@ -31,24 +50,30 @@ export const Developers = () => {
       {developers.length > 0 ? (
         <div className="container developers__container">
           {developers.map((developer) => {
-            const { _id: id, avatar, name, posts } = developer;
+            const { _id, avatar, name, posts } = developer;
             const hasFiveOrMorePosts = posts >= 5;
 
             return (
-              <Link key={id} to={`/posts/users/${id}`} className={`developer ${hasFiveOrMorePosts ? 'has-five-posts' : ''}`}>
-                <div className="developer__avatar">
-                  <img src={`${avatar}`} alt={`Image of ${name}`} />
-                </div>
-                <div className="developer__info">
-                  <h4>{name}</h4>
-                  <p><strong>Contribution </strong>{posts}</p>
-                </div>
-              </Link>
+              <div key={_id} className={`developer ${hasFiveOrMorePosts ? "has-five-posts" : ""}`}>
+                <Link to={`/posts/users/${_id}`} className="developer__link">
+                  <div className="developer__avatar">
+                    <img src={avatar} alt={`Image of ${name}`} />
+                  </div>
+                  <div className="developer__info">
+                    <h4>{name}</h4>
+                    <p>
+                      <strong>Contribution:</strong> {posts}
+                    </p>
+                  </div>
+                </Link>
+                {/* Render delete button */}
+                <button onClick={() => handleDelete(_id)}>Delete</button>
+              </div>
             );
           })}
         </div>
       ) : (
-        <h2 className='center'>No Users/Developers Found</h2>
+        <h2 className="center">No Users/Developers Found</h2>
       )}
     </section>
   );

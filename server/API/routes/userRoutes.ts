@@ -1,5 +1,6 @@
 import { Router } from "express";
-import {registerUser, loginUser, getUser, changeAvatar, editUser, getUsers} from "../controllers/userControllers"
+import {registerUser, loginUser, getUser, changeAvatar, editUser, getUsers, deleteUser} from "../controllers/userControllers"
+import { adminMiddleware } from "../middleware/adminMiddleware";
 import { authMiddleware } from "../middleware/authMiddleware";
 
 const router = Router();
@@ -10,6 +11,7 @@ router.get('/:id', getUser)
 router.get('/', getUsers)
 router.post('/change-avatar', authMiddleware, changeAvatar)
 router.patch('/edit-user', authMiddleware, editUser)
+router.delete('/:id', authMiddleware, adminMiddleware, deleteUser);
 
 
 export default router;
