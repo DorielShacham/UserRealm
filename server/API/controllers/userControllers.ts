@@ -210,6 +210,17 @@ const getUsers = async (req, res, next) => {
   }
 };
 
+// get user role (unprotected) - /api/users/:id/role
+const getUserRole = async (req, res, next) => {
+  try {
+    const { role } = req.user;
+    res.status(200).json({ role });
+  } catch (error) {
+    console.error("Error getting user role:", error);
+    return next(new HttpError("Error getting user role", 500));
+  }
+};
+
 //delete user (protected) /api/users/:d
 const deleteUser = async (req, res, next) => {
   try {
@@ -224,4 +235,4 @@ const deleteUser = async (req, res, next) => {
       return next(new HttpError("Error deleting user", 500));
   }
 };
-export { registerUser, loginUser, getUser, changeAvatar, editUser, getUsers, deleteUser };
+export { registerUser, loginUser, getUser, changeAvatar, editUser, getUsers, getUserRole, deleteUser };

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {registerUser, loginUser, getUser, changeAvatar, editUser, getUsers, deleteUser} from "../controllers/userControllers"
+import {registerUser, loginUser, getUser, changeAvatar, editUser, getUsers, getUserRole, deleteUser} from "../controllers/userControllers"
 import { adminMiddleware } from "../middleware/adminMiddleware";
 import { authMiddleware } from "../middleware/authMiddleware";
 
@@ -11,6 +11,7 @@ router.get('/:id', getUser)
 router.get('/', getUsers)
 router.post('/change-avatar', authMiddleware, changeAvatar)
 router.patch('/edit-user', authMiddleware, editUser)
+router.get('/role', authMiddleware, getUserRole); // Add this route
 router.delete('/:id', authMiddleware, adminMiddleware, deleteUser);
 
 

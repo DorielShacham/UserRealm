@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
+
 interface Developer {
   _id: string;
   avatar: string;
@@ -14,6 +15,7 @@ interface Developer {
 export const Developers = () => {
   const [developers, setDevelopers] = useState<Developer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [userRole, setUserRole] = useState<string>("");
 
   const handleDelete = async (userId: string) => {
     try {
@@ -25,19 +27,24 @@ export const Developers = () => {
   };
 
   useEffect(() => {
-    const getDevelopers = async () => {
+    const fetchData = async () => {
       setIsLoading(true);
       try {
         const response = await axios.get<Developer[]>(
           `${process.env.REACT_APP_BASE_URL}/users`
         );
         setDevelopers(response.data);
+
+        const roleResponse = await axios.get<string>(
+          `${process.env.REACT_APP_BASE_URL}/user/role`
+        );
+        setUserRole(roleResponse.data);
       } catch (error) {
         console.log(error);
       }
       setIsLoading(false);
     };
-    getDevelopers();
+    fetchData();
   }, []);
 
   if (isLoading) {
@@ -70,8 +77,13 @@ export const Developers = () => {
                     </p>
                   </div>
                 </Link>
-                {role === 'admin' && (
-                  <button className="btn danger" onClick={() => handleDelete(_id)}>Delete user</button>
+                {userRole === "admin" && role !== "admin" && (
+                  <button
+                    className="btn danger"
+                    onClick={() => handleDelete(_id)}
+                  >
+                    Delete user
+                  </button>
                 )}
               </div>
             );
