@@ -14,7 +14,7 @@ interface Developer {
 export const Developers = () => {
   const [developers, setDevelopers] = useState<Developer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [userRoles, setUserRoles] = useState<{ [key: string]: string }>({});
+  const [userRoles, setUserRoles] = useState<{ [key: string]: string }>({}); 
   const [userRole, setUserRole] = useState<string>("");
 
   const handleDelete = async (userId: string) => {
@@ -35,10 +35,15 @@ export const Developers = () => {
         );
         setDevelopers(response.data);
 
-        const roleResponse = await axios.get<string>(
-          `${process.env.REACT_APP_BASE_URL}/users/:id/role`
-        );
-        setUserRole(roleResponse.data);
+        
+        const currentUser = response.data.find(developer => developer.name === 'YOUR_USERNAME');
+        if (currentUser) {
+          const { _id } = currentUser;
+          const roleResponse = await axios.get<string>(
+            `${process.env.REACT_APP_BASE_URL}/users/${_id}/role`
+          );
+          setUserRole(roleResponse.data);
+        }
 
         const rolePromises = response.data.map(async (developer) => {
           const roleResponse = await axios.get<string>(
@@ -62,6 +67,8 @@ export const Developers = () => {
     fetchData();
   }, []);
 
+  
+
   if (isLoading) {
     return <Loader />;
   }
@@ -72,13 +79,15 @@ export const Developers = () => {
         <div className="container developers__container">
           {developers.map((developer) => {
             const { _id, avatar, name, posts } = developer;
-            const role = userRoles[_id];
+            const role = userRoles[_id]; 
             const hasFiveOrMorePosts = posts >= 5;
 
             return (
               <div
                 key={_id}
-                className={`developer ${hasFiveOrMorePosts ? "has-five-posts" : ""}`}
+                className={`developer ${
+                  hasFiveOrMorePosts ? "has-five-posts" : ""
+                }`}
               >
                 <Link to={`/posts/users/${_id}`} className="developer__link">
                   <div className="developer__avatar">
