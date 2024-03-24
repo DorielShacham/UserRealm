@@ -36,7 +36,7 @@ export const Developers = () => {
         setDevelopers(response.data);
 
         const roleResponse = await axios.get<string>(
-          `${process.env.REACT_APP_BASE_URL}/user/role`
+          `${process.env.REACT_APP_BASE_URL}/users/role`
         );
         setUserRole(roleResponse.data);
       } catch (error) {
