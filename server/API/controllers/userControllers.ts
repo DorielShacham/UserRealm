@@ -227,7 +227,6 @@ const getUserRole = async (req, res, next) => {
   }
 };
 
-
 //delete user (protected) /api/users/:d
 const deleteUser = async (req, res, next) => {
   try {
