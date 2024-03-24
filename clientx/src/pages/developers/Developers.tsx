@@ -34,8 +34,6 @@ export const Developers = () => {
   
         if (userId === "660052998fff9a62ca3f3a7e") {
           setUserRole("admin");
-        } else {
-          console.log("the user is ", userRole); 
         }
   
         const response = await axios.get<Developer[]>(
@@ -66,11 +64,8 @@ export const Developers = () => {
       setIsLoading(false);
     };
     fetchData();
-  }, [userRole]); // Include userRole in the dependency array
+  }, [userRole]);
   
-  // Rest of your code remains the same
-  
-
   if (isLoading) {
     return <Loader />;
   }
@@ -83,9 +78,6 @@ export const Developers = () => {
             const { _id, avatar, name, posts } = developer;
             const role = userRoles[_id];
             const hasFiveOrMorePosts = posts >= 5;
-
-            console.log("Role:", role);
-            console.log("UserRole:", userRole);
 
             return (
               <div
