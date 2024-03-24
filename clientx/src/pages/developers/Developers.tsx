@@ -38,6 +38,7 @@ export const Developers = () => {
         
         const currentUser = response.data.find(developer => developer.name === 'admin');
         if (currentUser) {
+          console.log(currentUser)
           const { _id } = currentUser;
           const roleResponse = await axios.get<string>(
             `${process.env.REACT_APP_BASE_URL}/users/${_id}/role`
