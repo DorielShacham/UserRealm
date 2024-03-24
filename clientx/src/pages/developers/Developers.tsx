@@ -35,9 +35,9 @@ export const Developers = () => {
         );
         setDevelopers(response.data);
 
-        const currentUser = response.data.find(developer => developer.name === 'admin');
+        const currentUser = response.data.find(developer => developer.name === '660052998fff9a62ca3f3a7e');
         if (currentUser) {
-          console.log(currentUser)
+          console.log("this is the currentUser ",currentUser)
           const { _id } = currentUser;
           const roleResponse = await axios.get<string>(
             `${process.env.REACT_APP_BASE_URL}/users/${_id}/role`
@@ -78,7 +78,6 @@ export const Developers = () => {
           {developers.map((developer) => {
             const { _id, avatar, name, posts } = developer;
             const role = userRoles[_id]; 
-            console.log(role)
             const hasFiveOrMorePosts = posts >= 5;
 
             return (
