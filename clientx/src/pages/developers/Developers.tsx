@@ -3,13 +3,12 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
-
-// Define the type of developer object
 interface Developer {
   _id: string;
   avatar: string;
   name: string;
   posts: number;
+  role: string;
 }
 
 export const Developers = () => {
@@ -50,11 +49,16 @@ export const Developers = () => {
       {developers.length > 0 ? (
         <div className="container developers__container">
           {developers.map((developer) => {
-            const { _id, avatar, name, posts } = developer;
+            const { _id, avatar, name, posts, role } = developer;
             const hasFiveOrMorePosts = posts >= 5;
 
             return (
-              <div key={_id} className={`developer ${hasFiveOrMorePosts ? "has-five-posts" : ""}`}>
+              <div
+                key={_id}
+                className={`developer ${
+                  hasFiveOrMorePosts ? "has-five-posts" : ""
+                }`}
+              >
                 <Link to={`/posts/users/${_id}`} className="developer__link">
                   <div className="developer__avatar">
                     <img src={avatar} alt={`Image of ${name}`} />
@@ -66,8 +70,9 @@ export const Developers = () => {
                     </p>
                   </div>
                 </Link>
-                {/* Render delete button */}
-                <button onClick={() => handleDelete(_id)}>Delete</button>
+                {role === 'admin' && (
+                  <button className="btn primary" onClick={() => handleDelete(_id)}>Delete user</button>
+                )}
               </div>
             );
           })}

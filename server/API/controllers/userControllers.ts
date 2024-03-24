@@ -213,11 +213,9 @@ const getUsers = async (req, res, next) => {
 //delete user (protected) /api/users/:d
 const deleteUser = async (req, res, next) => {
   try {
-      // Check if logged-in user is admin
       if (req.user.role !== 'admin') {
           return next(new HttpError("Unauthorized", 401));
       }
-
       const { id } = req.params;
       await UserModel.findByIdAndDelete(id);
       res.status(200).json({ message: "User deleted successfully" });

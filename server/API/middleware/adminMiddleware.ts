@@ -1,15 +1,6 @@
-import { Request, Response, NextFunction } from "express";
 import { HttpError } from "../models/errorModel";
 
-declare global {
-  namespace Express {
-    interface Request {
-      user?: { role: string }; 
-    }
-  }
-}
-
-const adminMiddleware = (req: Request, res: Response, next: NextFunction) => {
+const adminMiddleware = (req, res, next) => {
     const user = req.user;
 
     if (!user || user.role !== 'admin') {
