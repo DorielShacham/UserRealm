@@ -30,32 +30,34 @@ export const Developers = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        
-        const userId = localStorage.getItem('userId');
-  
-        if (userId === '660052998fff9a62ca3f3a7e') {
+        const userId = localStorage.getItem("userId");
+
+        if (userId === "660052998fff9a62ca3f3a7e") {
           setUserRole("admin");
-          console.log(userRole)
+          console.log(userRole);
         }
-  
+
         const response = await axios.get<Developer[]>(
           `${process.env.REACT_APP_BASE_URL}/users`
         );
         setDevelopers(response.data);
-  
+
         const rolePromises = response.data.map(async (developer) => {
           const roleResponse = await axios.get<string>(
             `${process.env.REACT_APP_BASE_URL}/users/${developer._id}/role`
           );
           return { _id: developer._id, role: roleResponse.data };
         });
-  
+
         const roles = await Promise.all(rolePromises);
-        const roleMap = roles.reduce<{ [key: string]: string }>((acc, { _id, role }) => {
-          acc[_id] = role;
-          return acc;
-        }, {});
-  
+        const roleMap = roles.reduce<{ [key: string]: string }>(
+          (acc, { _id, role }) => {
+            acc[_id] = role;
+            return acc;
+          },
+          {}
+        );
+
         setUserRoles(roleMap);
       } catch (error) {
         console.error(error);
@@ -64,7 +66,6 @@ export const Developers = () => {
     };
     fetchData();
   }, []);
-  
 
   if (isLoading) {
     return <Loader />;
@@ -76,10 +77,11 @@ export const Developers = () => {
         <div className="container developers__container">
           {developers.map((developer) => {
             const { _id, avatar, name, posts } = developer;
-            const role = userRoles[_id]; 
+            const role = userRoles[_id];
             const hasFiveOrMorePosts = posts >= 5;
 
-            console.log("userRole:", userRole); // Log userRole here
+            console.log("Role:", role);
+            console.log("UserRole:", userRole);
 
             return (
               <div
@@ -99,7 +101,6 @@ export const Developers = () => {
                     </p>
                   </div>
                 </Link>
-                {console.log("role:", role)}
                 {userRole === "admin" && role !== "admin" && (
                   <button
                     className="btn danger"
@@ -107,7 +108,6 @@ export const Developers = () => {
                   >
                     Delete user
                   </button>
-                  
                 )}
               </div>
             );
