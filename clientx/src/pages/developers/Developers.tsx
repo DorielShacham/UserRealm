@@ -14,7 +14,7 @@ interface Developer {
 export const Developers = () => {
   const [developers, setDevelopers] = useState<Developer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [userRoles, setUserRoles] = useState<{ [key: string]: string }>({}); 
+  const [userRoles, setUserRoles] = useState<{ [key: string]: string }>({});
   const [userRole, setUserRole] = useState<string>("");
 
   const handleDelete = async (userId: string) => {
@@ -35,7 +35,6 @@ export const Developers = () => {
         );
         setDevelopers(response.data);
 
-        
         const currentUser = response.data.find(developer => developer.name === 'admin');
         if (currentUser) {
           console.log(currentUser)
@@ -68,8 +67,6 @@ export const Developers = () => {
     fetchData();
   }, []);
 
-  
-
   if (isLoading) {
     return <Loader />;
   }
@@ -81,6 +78,7 @@ export const Developers = () => {
           {developers.map((developer) => {
             const { _id, avatar, name, posts } = developer;
             const role = userRoles[_id]; 
+            console.log(role)
             const hasFiveOrMorePosts = posts >= 5;
 
             return (
@@ -101,13 +99,14 @@ export const Developers = () => {
                     </p>
                   </div>
                 </Link>
-                {userRole === "admin" && (
+                {userRole === "admin" && role !== "admin" && (
                   <button
                     className="btn danger"
                     onClick={() => handleDelete(_id)}
                   >
                     Delete user
                   </button>
+                  
                 )}
               </div>
             );
