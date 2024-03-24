@@ -9,13 +9,12 @@ interface Developer {
   avatar: string;
   name: string;
   posts: number;
-  role: string;
 }
 
 export const Developers = () => {
   const [developers, setDevelopers] = useState<Developer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [userRole, setUserRole] = useState<string>("");
+  const [userRoles, setUserRoles] = useState<{ [key: string]: string }>({}); // Explicitly define the shape of userRoles
 
   const handleDelete = async (userId: string) => {
     try {
@@ -33,12 +32,26 @@ export const Developers = () => {
         const response = await axios.get<Developer[]>(
           `${process.env.REACT_APP_BASE_URL}/users`
         );
+        console.log('Response data:', response.data); 
+  
         setDevelopers(response.data);
-
-        const roleResponse = await axios.get<string>(
-          `${process.env.REACT_APP_BASE_URL}/users/:id/role`
-        );
-        setUserRole(roleResponse.data);
+  
+        const rolePromises = response.data.map(async (developer) => {
+          console.log('Current developer:', developer); 
+          const roleResponse = await axios.get<string>(
+            `${process.env.REACT_APP_BASE_URL}/users/${developer._id}/role`
+          );
+          return { _id: developer._id, role: roleResponse.data };
+        });
+  
+        const roles = await Promise.all(rolePromises);
+        const roleMap = roles.reduce<{ [key: string]: string }>((acc, { _id, role }) => {
+          acc[_id] = role;
+          return acc;
+        }, {});
+        
+  
+        setUserRoles(roleMap);
       } catch (error) {
         console.log(error);
       }
@@ -46,6 +59,7 @@ export const Developers = () => {
     };
     fetchData();
   }, []);
+  
 
   if (isLoading) {
     return <Loader />;
@@ -56,7 +70,8 @@ export const Developers = () => {
       {developers.length > 0 ? (
         <div className="container developers__container">
           {developers.map((developer) => {
-            const { _id, avatar, name, posts, role } = developer;
+            const { _id, avatar, name, posts } = developer;
+            const role = userRoles[_id]; 
             const hasFiveOrMorePosts = posts >= 5;
 
             return (
@@ -77,7 +92,7 @@ export const Developers = () => {
                     </p>
                   </div>
                 </Link>
-                {userRole === "admin" && role !== "admin" && (
+                {role === "admin" && role !== "admin" && (
                   <button
                     className="btn danger"
                     onClick={() => handleDelete(_id)}
