@@ -1,20 +1,19 @@
+import "./developers.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
-
-// Define the type of developer object
 interface Developer {
   _id: string;
   avatar: string;
   name: string;
   posts: number;
+  role: string;
 }
 
 export const Developers = () => {
   const [developers, setDevelopers] = useState<Developer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [userRole, setUserRole] = useState<string>("");
 
   const handleDelete = async (userId: string) => {
     try {
@@ -26,26 +25,19 @@ export const Developers = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const getDevelopers = async () => {
       setIsLoading(true);
       try {
-        // Fetch developers data
-        const developersResponse = await axios.get<Developer[]>(
+        const response = await axios.get<Developer[]>(
           `${process.env.REACT_APP_BASE_URL}/users`
         );
-        setDevelopers(developersResponse.data);
-
-        // Fetch user's role
-        const roleResponse = await axios.get<string>(
-          `${process.env.REACT_APP_BASE_URL}/users/role`
-        );
-        setUserRole(roleResponse.data);
+        setDevelopers(response.data);
       } catch (error) {
         console.log(error);
       }
       setIsLoading(false);
     };
-    fetchData();
+    getDevelopers();
   }, []);
 
   if (isLoading) {
@@ -57,7 +49,7 @@ export const Developers = () => {
       {developers.length > 0 ? (
         <div className="container developers__container">
           {developers.map((developer) => {
-            const { _id, avatar, name, posts } = developer;
+            const { _id, avatar, name, posts, role } = developer;
             const hasFiveOrMorePosts = posts >= 5;
 
             return (
@@ -78,9 +70,8 @@ export const Developers = () => {
                     </p>
                   </div>
                 </Link>
-                {/* Render delete button if user is admin */}
-                {userRole === 'admin' && (
-                  <button onClick={() => handleDelete(_id)}>Delete</button>
+                {role === 'admin' && (
+                  <button className="btn danger" onClick={() => handleDelete(_id)}>Delete user</button>
                 )}
               </div>
             );
