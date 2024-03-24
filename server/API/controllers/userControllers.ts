@@ -213,13 +213,20 @@ const getUsers = async (req, res, next) => {
 // get user role (unprotected) - /api/users/:id/role
 const getUserRole = async (req, res, next) => {
   try {
-    const { role } = req.user;
+    const userId = req.params.id;
+    const user = await UserModel.findById(userId); 
+
+    if (!user) {
+      return next(new HttpError("User not found", 404));
+    }
+    const { role } = user;
     res.status(200).json({ role });
   } catch (error) {
     console.error("Error getting user role:", error);
     return next(new HttpError("Error getting user role", 500));
   }
 };
+
 
 //delete user (protected) /api/users/:d
 const deleteUser = async (req, res, next) => {
