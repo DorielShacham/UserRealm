@@ -31,27 +31,25 @@ export const Developers = () => {
       setIsLoading(true);
       try {
         const userId = localStorage.getItem("userId");
-
+  
         if (userId === "660052998fff9a62ca3f3a7e") {
           setUserRole("admin");
-          console.log("the user is ", userRole);
+        } else {
+          console.log("the user is ", userRole); 
         }
-        else{
-          console.log("the user is ", userRole)
-        }
-
+  
         const response = await axios.get<Developer[]>(
           `${process.env.REACT_APP_BASE_URL}/users`
         );
         setDevelopers(response.data);
-
+  
         const rolePromises = response.data.map(async (developer) => {
           const roleResponse = await axios.get<string>(
             `${process.env.REACT_APP_BASE_URL}/users/${developer._id}/role`
           );
           return { _id: developer._id, role: roleResponse.data };
         });
-
+  
         const roles = await Promise.all(rolePromises);
         const roleMap = roles.reduce<{ [key: string]: string }>(
           (acc, { _id, role }) => {
@@ -60,7 +58,7 @@ export const Developers = () => {
           },
           {}
         );
-
+  
         setUserRoles(roleMap);
       } catch (error) {
         console.error(error);
@@ -68,7 +66,10 @@ export const Developers = () => {
       setIsLoading(false);
     };
     fetchData();
-  }, []);
+  }, [userRole]); // Include userRole in the dependency array
+  
+  // Rest of your code remains the same
+  
 
   if (isLoading) {
     return <Loader />;
