@@ -35,6 +35,7 @@ export const Developers = () => {
   
         if (userId === '660052998fff9a62ca3f3a7e') {
           setUserRole("admin");
+          console.log(userRole)
         }
   
         const response = await axios.get<Developer[]>(
@@ -78,6 +79,8 @@ export const Developers = () => {
             const role = userRoles[_id]; 
             const hasFiveOrMorePosts = posts >= 5;
 
+            console.log("userRole:", userRole); // Log userRole here
+
             return (
               <div
                 key={_id}
@@ -96,6 +99,7 @@ export const Developers = () => {
                     </p>
                   </div>
                 </Link>
+                {console.log("role:", role)}
                 {userRole === "admin" && role !== "admin" && (
                   <button
                     className="btn danger"

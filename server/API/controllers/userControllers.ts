@@ -215,7 +215,7 @@ const getUserRole = async (req, res, next) => {
   try {
     const userId = req.params.id;
     const user = await UserModel.findById(userId); 
-
+    
     if (!user) {
       return next(new HttpError("User not found", 404));
     }
