@@ -101,7 +101,7 @@ export const Developers = () => {
                     </p>
                   </div>
                 </Link>
-                {userRole === "admin" && role !== "admin" && (
+                {userRole === "admin" && (
                   <button
                     className="btn danger"
                     onClick={() => handleDelete(_id)}
