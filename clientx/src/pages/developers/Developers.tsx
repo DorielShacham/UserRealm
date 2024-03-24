@@ -30,34 +30,31 @@ export const Developers = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
+        
+        const userId = localStorage.getItem('userId');
+  
+        if (userId === '660052998fff9a62ca3f3a7e') {
+          setUserRole("admin");
+        }
+  
         const response = await axios.get<Developer[]>(
           `${process.env.REACT_APP_BASE_URL}/users`
         );
         setDevelopers(response.data);
-
-        const currentUser = response.data.find(developer => developer.name === '660052998fff9a62ca3f3a7e');
-        if (currentUser) {
-          console.log("this is the currentUser ",currentUser)
-          const { _id } = currentUser;
-          const roleResponse = await axios.get<string>(
-            `${process.env.REACT_APP_BASE_URL}/users/${_id}/role`
-          );
-          setUserRole(roleResponse.data);
-        }
-
+  
         const rolePromises = response.data.map(async (developer) => {
           const roleResponse = await axios.get<string>(
             `${process.env.REACT_APP_BASE_URL}/users/${developer._id}/role`
           );
           return { _id: developer._id, role: roleResponse.data };
         });
-
+  
         const roles = await Promise.all(rolePromises);
         const roleMap = roles.reduce<{ [key: string]: string }>((acc, { _id, role }) => {
           acc[_id] = role;
           return acc;
         }, {});
-
+  
         setUserRoles(roleMap);
       } catch (error) {
         console.error(error);
@@ -66,6 +63,7 @@ export const Developers = () => {
     };
     fetchData();
   }, []);
+  
 
   if (isLoading) {
     return <Loader />;
