@@ -34,7 +34,10 @@ export const Developers = () => {
 
         if (userId === "660052998fff9a62ca3f3a7e") {
           setUserRole("admin");
-          console.log(userRole);
+          console.log("the user is ", userRole);
+        }
+        else{
+          console.log("the user is ", userRole)
         }
 
         const response = await axios.get<Developer[]>(
