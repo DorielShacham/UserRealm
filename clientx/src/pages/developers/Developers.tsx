@@ -27,18 +27,18 @@ export const Developers = () => {
   };
 
   useEffect(() => {
-    console.log("outside try usereffect")
+    console.log("outside try usereffect");
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        console.log("inside try usereffect")
+        console.log("inside try usereffect");
         const userId = localStorage.getItem("userId");
   
         if (userId === "660052998fff9a62ca3f3a7e") {
           setUserRole("admin");
         }
-
-        console.log(userId)
+  
+        console.log(userId);
   
         const response = await axios.get<Developer[]>(
           `${process.env.REACT_APP_BASE_URL}/users`
@@ -66,10 +66,14 @@ export const Developers = () => {
         console.error(error);
       }
       setIsLoading(false);
-      console.log("userRole: ",userRole)
     };
     fetchData();
-  }, [userRole]);
+  }, []); // Run only once on initial render
+  
+  useEffect(() => {
+    console.log("userRole: ", userRole);
+  }, [userRole]); // Run whenever userRole changes
+  
   
   if (isLoading) {
     return <Loader />;
