@@ -82,9 +82,7 @@ export const Developers = () => {
             return (
               <div
                 key={_id}
-                className={`developer ${
-                  hasFiveOrMorePosts ? "has-five-posts" : ""
-                }`}
+                className={`developer ${hasFiveOrMorePosts ? "has-five-posts" : ""}`}
               >
                 <Link to={`/posts/users/${_id}`} className="developer__link">
                   <div className="developer__avatar">
