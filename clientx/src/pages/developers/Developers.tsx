@@ -10,12 +10,14 @@ interface Developer {
   name: string;
   posts: number;
 }
-
 export const Developers = () => {
   const [developers, setDevelopers] = useState<Developer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [userRoles, setUserRoles] = useState<{ [key: string]: string }>({});
-  const [userRole, setUserRole] = useState<string>("");
+  const [userRole, setUserRole] = useState<string>(() => {
+    const userId = localStorage.getItem("userId");
+    return userId === "660052998fff9a62ca3f3a7e" ? "admin" : "";
+  });
 
   const handleDelete = async (userId: string) => {
     try {
@@ -27,31 +29,21 @@ export const Developers = () => {
   };
 
   useEffect(() => {
-    console.log("outside try usereffect");
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        console.log("inside try usereffect");
-        const userId = localStorage.getItem("userId");
-  
-        if (userId === "660052998fff9a62ca3f3a7e") {
-          setUserRole("admin");
-        }
-  
-        console.log(userId);
-  
         const response = await axios.get<Developer[]>(
           `${process.env.REACT_APP_BASE_URL}/users`
         );
         setDevelopers(response.data);
-  
+
         const rolePromises = response.data.map(async (developer) => {
           const roleResponse = await axios.get<string>(
             `${process.env.REACT_APP_BASE_URL}/users/${developer._id}/role`
           );
           return { _id: developer._id, role: roleResponse.data };
         });
-  
+
         const roles = await Promise.all(rolePromises);
         const roleMap = roles.reduce<{ [key: string]: string }>(
           (acc, { _id, role }) => {
@@ -60,7 +52,7 @@ export const Developers = () => {
           },
           {}
         );
-  
+
         setUserRoles(roleMap);
       } catch (error) {
         console.error(error);
@@ -68,13 +60,12 @@ export const Developers = () => {
       setIsLoading(false);
     };
     fetchData();
-  }, []); // Run only once on initial render
-  
+  }, []);
+
   useEffect(() => {
     console.log("userRole: ", userRole);
-  }, [userRole]); // Run whenever userRole changes
-  
-  
+  }, [userRole]);
+
   if (isLoading) {
     return <Loader />;
   }
