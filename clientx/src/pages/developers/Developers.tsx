@@ -27,9 +27,11 @@ export const Developers = () => {
   };
 
   useEffect(() => {
+    console.log("outside try usereffect")
     const fetchData = async () => {
       setIsLoading(true);
       try {
+        console.log("inside try usereffect")
         const userId = localStorage.getItem("userId");
   
         if (userId === "660052998fff9a62ca3f3a7e") {
