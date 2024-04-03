@@ -29,21 +29,27 @@ export const Developers = () => {
   };
 
   useEffect(() => {
+    console.log("outside try useEffect");
     const fetchData = async () => {
       setIsLoading(true);
       try {
+        console.log("inside try useEffect");
+        const userId = localStorage.getItem("userId");
+        console.log("userId:", userId);
+        setUserRole(userId === "660052998fff9a62ca3f3a7e" ? "admin" : "");
+  
         const response = await axios.get<Developer[]>(
           `${process.env.REACT_APP_BASE_URL}/users`
         );
         setDevelopers(response.data);
-
+  
         const rolePromises = response.data.map(async (developer) => {
           const roleResponse = await axios.get<string>(
             `${process.env.REACT_APP_BASE_URL}/users/${developer._id}/role`
           );
           return { _id: developer._id, role: roleResponse.data };
         });
-
+  
         const roles = await Promise.all(rolePromises);
         const roleMap = roles.reduce<{ [key: string]: string }>(
           (acc, { _id, role }) => {
@@ -52,7 +58,7 @@ export const Developers = () => {
           },
           {}
         );
-
+  
         setUserRoles(roleMap);
       } catch (error) {
         console.error(error);
@@ -61,7 +67,7 @@ export const Developers = () => {
     };
     fetchData();
   }, []);
-
+  
   useEffect(() => {
     console.log("userRole: ", userRole);
   }, [userRole]);
