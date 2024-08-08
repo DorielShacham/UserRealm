@@ -100,7 +100,7 @@ const loginUser = async (req, res, next) => {
 const getUser = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const user = await UserModel.findById(id).select("-password");
+    const user = await UserModel.findById(id).select("-password -_id -email avatar name posts role");
     if (!user) {
       return next(new HttpError("User not found", 404));
     }
